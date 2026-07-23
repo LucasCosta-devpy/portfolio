@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Currículo — Lucas dos Santos Costa</title>
+<meta name="description" content="Currículo profissional de Lucas dos Santos Costa — Desenvolvedor Back-End (Go · Python)." />
+<style>
+:root{
+  --ground:#0a0e14;--panel:#121821;--panel-2:#161d28;--line:#232c3a;--line-soft:#1b2330;
+  --ink:#c7d0db;--ink-strong:#eef3f8;--muted:#7a8899;--muted-2:#5a6673;
+  --accent:#38bdf8;--accent-deep:#0ea5e9;--live:#34d399;--accent-glow:rgba(56,189,248,.16);
+  --paper:#0d131c;
+  --mono:ui-monospace,"Cascadia Code","SF Mono","JetBrains Mono",Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif;
+}
+:root[data-theme="light"]{
+  --ground:#e9edf3;--panel:#ffffff;--panel-2:#f6f8fb;--line:#e2e7ef;--line-soft:#eef1f6;
+  --ink:#2b3441;--ink-strong:#0f1720;--muted:#5f6b7a;--muted-2:#8a95a4;
+  --accent:#0284c7;--accent-deep:#0369a1;--live:#0d9d6e;--accent-glow:rgba(2,132,199,.12);--paper:#ffffff;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme]){
+    --ground:#e9edf3;--panel:#ffffff;--panel-2:#f6f8fb;--line:#e2e7ef;--line-soft:#eef1f6;
+    --ink:#2b3441;--ink-strong:#0f1720;--muted:#5f6b7a;--muted-2:#8a95a4;
+    --accent:#0284c7;--accent-deep:#0369a1;--live:#0d9d6e;--accent-glow:rgba(2,132,199,.12);--paper:#ffffff;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{margin:0;color:var(--ink-strong)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* toolbar (não imprime) */
+.toolbar{
+  position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--ground) 85%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft);
+}
+.toolbar-in{max-width:900px;margin:0 auto;padding:12px 20px;display:flex;gap:12px;align-items:center}
+.tb-back{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.tb-back:hover{color:var(--accent)}
+.tb-spacer{margin-left:auto;display:flex;gap:10px}
+.tb-btn{
+  font-family:var(--mono);font-size:13px;border:1px solid var(--line);background:var(--panel);color:var(--ink-strong);
+  padding:10px 16px;border-radius:9px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.16s;
+}
+.tb-btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+.tb-btn.primary{background:var(--accent);border-color:var(--accent);color:#04121c}
+:root[data-theme="light"] .tb-btn.primary{color:#fff}
+.tb-btn.primary:hover{background:var(--accent-deep)}
+.tb-btn svg{width:16px;height:16px}
+.theme-btn{width:40px;height:40px;justify-content:center;padding:0;font-size:15px}
+
+/* página A4 */
+.sheet{
+  max-width:900px;margin:26px auto;background:var(--paper);border:1px solid var(--line);
+  border-radius:14px;overflow:hidden;box-shadow:0 24px 60px -30px rgba(0,0,0,.7);
+}
+.cv-head{
+  padding:34px 40px 28px;border-bottom:1px solid var(--line);
+  background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 12%,var(--paper)),var(--paper));
+}
+.cv-head .name{font-size:2.1rem;font-weight:800;letter-spacing:-.03em;line-height:1}
+.cv-head .role{font-family:var(--mono);color:var(--accent);font-size:.95rem;margin-top:8px;letter-spacing:.02em}
+.cv-contact{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px;font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.cv-contact a{display:inline-flex;align-items:center;gap:7px}
+.cv-contact a:hover{color:var(--accent)}
+.cv-contact svg{width:14px;height:14px;color:var(--accent);flex:0 0 auto}
+
+.cv-body{display:grid;grid-template-columns:1fr 2fr;gap:0}
+.cv-side{padding:28px 26px;border-right:1px solid var(--line);background:var(--panel-2)}
+.cv-main{padding:28px 32px}
+
+.blk{margin-bottom:26px}
+.blk:last-child{margin-bottom:0}
+.blk h2{
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
+  padding-bottom:8px;margin-bottom:14px;border-bottom:1px solid var(--line);
+}
+.summary{color:var(--ink);font-size:.96rem}
+.summary b{color:var(--ink-strong)}
+
+/* skills */
+.skgrp{margin-bottom:14px}
+.skgrp b{display:block;font-size:12.5px;color:var(--ink-strong);margin-bottom:7px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-family:var(--mono);font-size:11px;color:var(--ink);background:var(--panel);border:1px solid var(--line);padding:3px 8px;border-radius:6px}
+:root[data-theme="light"] .tags span{background:#fff}
+
+/* education / lang */
+.edu{margin-bottom:14px}
+.edu b{display:block;color:var(--ink-strong);font-size:13.5px}
+.edu span{display:block;font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:2px}
+.edu em{color:var(--live);font-style:normal;font-family:var(--mono);font-size:11px}
+
+/* experience */
+.xp{position:relative;padding-left:20px;margin-bottom:22px}
+.xp:last-child{margin-bottom:0}
+.xp::before{content:"";position:absolute;left:0;top:6px;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+.xp::after{content:"";position:absolute;left:4px;top:16px;bottom:-16px;width:1px;background:var(--line)}
+.xp:last-child::after{display:none}
+.xp .role{font-size:1.02rem;font-weight:700;color:var(--ink-strong);letter-spacing:-.01em}
+.xp .meta{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin:3px 0 9px;display:flex;flex-wrap:wrap;gap:4px 12px}
+.xp .meta .co{color:var(--accent)}
+.xp ul{margin:0;padding-left:17px}
+.xp li{font-size:.9rem;color:var(--ink);margin:4px 0}
+.xp li b{color:var(--ink-strong)}
+
+.ach{counter-reset:a}
+.ach li{list-style:none;position:relative;padding-left:30px;margin:10px 0;font-size:.92rem;color:var(--ink)}
+.ach li::before{
+  counter-increment:a;content:counter(a,decimal-leading-zero);position:absolute;left:0;top:0;
+  font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:700;
+}
+.ach li b{color:var(--ink-strong)}
+
+.print-hint{max-width:900px;margin:0 auto 40px;padding:0 20px;font-family:var(--mono);font-size:12px;color:var(--muted-2);text-align:center}
+
+/* ============ IMPRESSÃO / PDF ============ */
+@media print{
+  @page{size:A4;margin:11mm}
+  body{background:#fff;color:#111}
+  .toolbar,.print-hint{display:none!important}
+  .sheet{max-width:none;margin:0;border:0;border-radius:0;box-shadow:none;background:#fff;overflow:visible}
+  html,body{height:auto}
+  .cv-body{break-inside:auto}
+  .cv-head{background:#fff;border-bottom:2px solid #0284c7;padding:0 0 16px;margin-bottom:16px}
+  .cv-head .name{color:#0f1720}
+  .cv-head .role,.blk h2,.xp .meta .co,.cv-contact svg{color:#0284c7}
+  .cv-contact{color:#444}
+  .cv-body{grid-template-columns:1fr 2fr}
+  .cv-side{background:#fff;border-right:1px solid #d5dbe4;padding:0 18px 0 0}
+  .cv-main{padding:0 0 0 22px}
+  .tags span,.edu,.summary,.summary b,.xp .role,.xp li,.xp li b,.ach li,.ach li b{color:#111!important}
+  .tags span{background:#fff;border-color:#cbd3de}
+  .blk h2{border-color:#d5dbe4}
+  .xp::before,.ach li::before{color:#0284c7}
+  .xp::before{background:#0284c7}
+  .edu em{color:#0d9d6e}
+  a{color:#111}
+  .xp,.edu,.skgrp{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<!-- toolbar -->
+<div class="toolbar">
+  <div class="toolbar-in">
+    <a href="index.html" class="tb-back">← portfólio</a>
+    <div class="tb-spacer">
+      <button class="tb-btn theme-btn" id="themeBtn" aria-label="Alternar tema" title="Alternar tema">◐</button>
+      <button class="tb-btn primary" id="pdfBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0-4-4m4 4 4-4"/><path d="M5 21h14"/></svg>
+        Baixar PDF
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- currículo -->
+<div class="sheet" id="sheet">
+  <div class="cv-head">
+    <h1 class="name">Lucas dos Santos Costa</h1>
+    <div class="role">Desenvolvedor Back-End Pleno · Go &amp; Python</div>
+    <div class="cv-contact">
+      <a href="mailto:lucas_dscosta@hotmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        lucas_dscosta@hotmail.com
+      </a>
+      <a href="https://wa.me/5551982457540">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+        +55 (51) 98245-7540
+      </a>
+      <a href="https://www.linkedin.com/in/lucas-costa-24078">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4"/></svg>
+        linkedin.com/in/lucas-costa-24078
+      </a>
+      <span>Estância Velha / Porto Alegre — RS</span>
+    </div>
+  </div>
+
+  <div class="cv-body">
+    <!-- SIDEBAR -->
+    <aside class="cv-side">
+      <div class="blk">
+        <h2>Competências</h2>
+        <div class="skgrp"><b>Linguagens</b>
+          <div class="tags"><span>Go</span><span>Python</span><span>TypeScript</span><span>JavaScript</span><span>SQL</span><span>ABAP</span><span>VBA</span><span>DAX</span></div>
+        </div>
+        <div class="skgrp"><b>Mensageria &amp; tempo real</b>
+          <div class="tags"><span>RabbitMQ</span><span>MQTT</span><span>WebSocket</span><span>Webhook</span><span>Event-driven</span></div>
+        </div>
+        <div class="skgrp"><b>DevOps, cloud &amp; infra</b>
+          <div class="tags"><span>Docker</span><span>Kubernetes</span><span>Portainer</span><span>CI/CD</span><span>AWS</span><span>Azure</span><span>Oracle Cloud</span><span>GCP</span></div>
+        </div>
+        <div class="skgrp"><b>Observabilidade</b>
+          <div class="tags"><span>Grafana</span><span>Prometheus</span><span>Promtail</span><span>ClickHouse</span></div>
+        </div>
+        <div class="skgrp"><b>Bancos de dados</b>
+          <div class="tags"><span>PostgreSQL</span><span>Oracle</span><span>MySQL</span><span>SQL Server</span><span>MongoDB</span><span>Redis</span><span>ElasticSearch</span></div>
+        </div>
+        <div class="skgrp"><b>Front-end</b>
+          <div class="tags"><span>HTML/CSS</span><span>JavaScript</span><span>TypeScript</span></div>
+        </div>
+        <div class="skgrp"><b>Dados, BI &amp; IA</b>
+          <div class="tags"><span>Power BI</span><span>Data Studio</span><span>FindFace</span><span>OCR</span><span>Web scraping</span></div>
+        </div>
+      </div>
+
+      <div class="blk">
+        <h2>Formação</h2>
+        <div class="edu"><b>Pós — Ciência de Dados e IA</b><span>Líbano — São Paulo, SP</span><em>2025 – 2026 · concluído</em></div>
+        <div class="edu"><b>Pós — Business Intelligence &amp; Analytics</b><span>UniRitter — Porto Alegre, RS</span><em>2019 – 2023 · concluído</em></div>
+        <div class="edu"><b>Graduação — Eng. de Energia</b><span>UERGS — Porto Alegre, RS</span><em>2018 – 2024 · concluído</em></div>
+        <div class="edu"><b>Tecnólogo — Análise e Desenv. de Sistemas</b><span>QI — Porto Alegre, RS</span><em>2018 – 2020 · concluído</em></div>
+      </div>
+
+      <div class="blk">
+        <h2>Idiomas</h2>
+        <div class="edu"><b>Português</b><span>nativo</span></div>
+        <div class="edu"><b>Inglês</b><span>técnico / leitura</span></div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="cv-main">
+      <div class="blk">
+        <h2>Resumo profissional</h2>
+        <p class="summary">
+          Desenvolvedor back-end com foco em <b>sistemas orientados a eventos</b>, <b>integrações de alta escala</b>
+          e <b>processamento de dados em tempo real</b>. Já entreguei <b>mais de 500 integrações</b> — de rotinas
+          simples do dia a dia a plataformas completas — construídas majoritariamente em <b>Go</b>, com <b>Python</b>
+          para análise de dados intensiva. Sólido em mensageria, observabilidade (Grafana · Prometheus),
+          reconhecimento facial em tempo real e microsserviços. <b>Back-end é meu foco principal</b>, mas atuo
+          também em <b>DevOps</b> (Docker · Kubernetes) e <b>front-end</b> conforme a necessidade. Atendimento a
+          clientes públicos e privados de grande porte, com requisitos reais de segurança e escala.
+        </p>
+      </div>
+
+      <div class="blk">
+        <h2>Experiência</h2>
+
+        <div class="xp">
+          <div class="role">Desenvolvedor Back-End Pleno</div>
+          <div class="meta"><span class="co">DGT Tecnologia Ltda</span><span>Estância Velha, RS</span><span>mar/2024 – atual</span></div>
+          <ul>
+            <li>Participei do desenvolvimento das <b>principais versões do produto</b>, evoluindo o sistema e dando suporte contínuo.</li>
+            <li>Desenvolvimento back-end de <b>sistemas orientados a eventos em Go</b>, com mensageria (RabbitMQ/MQTT) e integrações de API.</li>
+            <li>Pipelines de <b>processamento de imagem e reconhecimento facial em tempo real</b>, com foco em performance e escala.</li>
+            <li>Plataformas de <b>dados self-service</b> e <b>alertas multicanal</b>, expostas de forma segura via API.</li>
+            <li>Atuação em <b>DevOps</b> (Docker · Kubernetes) e observabilidade, além de <b>front-end</b> conforme a necessidade.</li>
+          </ul>
+        </div>
+
+        <div class="xp">
+          <div class="role">Analista de Desenvolvimento de Sistema Pleno</div>
+          <div class="meta"><span class="co">DGT Tecnologia Ltda</span><span>Estância Velha, RS</span><span>mai/2023 – mar/2024</span></div>
+          <ul>
+            <li>Desenvolvimento de software e <b>integrações de API</b>, automação de dados e de tarefas.</li>
+            <li>Containerização com <b>Docker/Portainer</b>, filas de mensagens e arquitetura de banco de dados.</li>
+            <li>Gestão de logs, alertas proativos e ambientes virtualizados / de teste.</li>
+          </ul>
+        </div>
+
+        <div class="xp">
+          <div class="role">Analista de Sistema Júnior</div>
+          <div class="meta"><span class="co">DGT Tecnologia Ltda</span><span>Novo Hamburgo, RS</span><span>out/2022 – mai/2023</span></div>
+          <ul>
+            <li>Desenvolvimento, <b>automação de processos</b> e integração de sistemas (APIs).</li>
+            <li>Documentação técnica, criação de fluxogramas, relatórios e suporte à equipe de implantação.</li>
+          </ul>
+        </div>
+
+        <div class="xp">
+          <div class="role">Estágio — Programação CNC e Data Science</div>
+          <div class="meta"><span class="co">TK Elevator</span><span>Guaíba, RS</span><span>mar/2021 – mai/2022</span></div>
+          <ul>
+            <li><b>Automação de tarefas</b> (Python, VBA, SAP, Power BI) e gestão de bancos de dados.</li>
+            <li>Criação e execução de <b>processos automatizados de alto nível (microsserviços)</b> e apoio a desenhos técnicos (SolidWorks, AutoCAD, Inventor).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="blk">
+        <h2>Realizações em destaque</h2>
+        <ul class="ach">
+          <li>API em <b>Go</b> que integra múltiplos bancos de dados com segurança, gerando relatórios e dashboards dinâmicos.</li>
+          <li>Sistema inteligente de monitoramento que integra <b>reconhecimento facial e de veículos</b> com microsserviços em Python e Go.</li>
+          <li>Integração e automação de bancos de dados via APIs e <b>web scraping</b>, com foco em relatórios web seguros e otimizados.</li>
+          <li>Automações que conectam <b>hardware a softwares personalizados</b> para controle e análise em campo.</li>
+        </ul>
+      </div>
+    </main>
+  </div>
+</div>
+
+<p class="print-hint">Dica: clique em <b>Baixar PDF</b> → na janela de impressão escolha <b>“Salvar como PDF”</b> e defina margens padrão / A4.</p>
+
+<script>
+  const root=document.documentElement, tbtn=document.getElementById('themeBtn');
+  const saved=localStorage.getItem('theme');
+  if(saved) root.setAttribute('data-theme',saved);
+  tbtn.addEventListener('click',()=>{
+    const cur=root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    const next=cur==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next); localStorage.setItem('theme',next);
+  });
+  document.getElementById('pdfBtn').addEventListener('click',()=>window.print());
+</script>
+</body>
+</html>
