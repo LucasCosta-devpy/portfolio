@@ -312,14 +312,15 @@ section{padding:64px 0;position:relative}
 .stack-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 @media(max-width:840px){.stack-grid{grid-template-columns:1fr}}
 .stack-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:22px;box-shadow:var(--shadow)}
-.stack-card h3{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.05em;margin-bottom:16px;font-weight:600}
+.stack-card h3{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.05em;margin-bottom:16px;font-weight:600;display:flex;align-items:center;gap:8px}
+.stack-card h3 svg{width:15px;height:15px;flex:0 0 auto}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{
   font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--panel-2);
   border:1px solid var(--line);padding:6px 11px;border-radius:8px;transition:border-color .16s, color .16s, transform .16s;
 }
 .chip:hover{border-color:var(--accent);color:var(--ink-strong);transform:translateY(-1px)}
-.chip.lead{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));color:var(--ink-strong)}
+/* .lead deixa de ter destaque fixo — o realce só aparece no hover, igual aos demais chips */
 .chip{display:inline-flex;align-items:center;gap:7px}
 .chip .lv{color:var(--muted-2)}
 .chip .tile{
@@ -489,7 +490,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
         <div class="role-line" id="roleLine"><span id="roleText"></span><span class="caret">▋</span></div>
         <p class="lede">
           Construo <b>sistemas orientados a eventos</b> que processam dados em tempo real e conversam
-          com o mundo por meio de <b>integrações</b>. Já entreguei <b>+500 integrações</b> — do micro ao
+          com o mundo por meio de <b>integrações</b>. Já entreguei <b>+50 integrações</b> — do micro ao
           macro — em <b>Go</b> e <b>Python</b>, com mensageria, observabilidade fim a fim e pipelines de
           reconhecimento facial que processam milhares de faces em segundos.
         </p>
@@ -602,7 +603,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
     </div>
     <div class="stack-grid">
       <div class="stack-card reveal">
-        <h3>linguagens</h3>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6"/><path d="m16 6 6 6-6 6"/></svg>linguagens</h3>
         <div class="chips">
           <span class="chip lead">Go<span class="lv">produção</span></span>
           <span class="chip lead">Python<span class="lv">avançado</span></span>
@@ -616,7 +617,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
         </div>
       </div>
       <div class="stack-card reveal">
-        <h3>mensageria &amp; tempo real</h3>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>mensageria &amp; tempo real</h3>
         <div class="chips">
           <span class="chip lead">RabbitMQ</span>
           <span class="chip lead">MQTT</span>
@@ -628,7 +629,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
         </div>
       </div>
       <div class="stack-card reveal">
-        <h3>observabilidade &amp; logs</h3>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>observabilidade &amp; logs</h3>
         <div class="chips">
           <span class="chip lead">Grafana</span>
           <span class="chip">Prometheus</span>
@@ -640,7 +641,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
         </div>
       </div>
       <div class="stack-card reveal">
-        <h3>bancos de dados</h3>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>bancos de dados</h3>
         <div class="chips">
           <span class="chip">PostgreSQL</span>
           <span class="chip">MySQL</span>
@@ -655,7 +656,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
         </div>
       </div>
       <div class="stack-card reveal">
-        <h3>cloud, infra &amp; devops</h3>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6 1.5A4 4 0 0 0 6.5 19z"/></svg>cloud, infra &amp; devops</h3>
         <div class="chips">
           <span class="chip lead">Docker</span>
           <span class="chip lead">Kubernetes</span>
@@ -669,7 +670,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
         </div>
       </div>
       <div class="stack-card reveal">
-        <h3>dados, BI &amp; IA</h3>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v2"/><path d="M12 10v7"/><path d="M17 6v11"/></svg>dados, BI &amp; IA</h3>
         <div class="chips">
           <span class="chip">Power BI</span>
           <span class="chip">Google Data Studio</span>
@@ -887,8 +888,8 @@ const projects = [
   {f:['observ','alerts'],tag:'observabilidade',badge:'auditoria',t:'Observabilidade fim a fim',
    d:'Camada de logs e alertas proativos: logs em JSON centralizados no Grafana, métricas no Prometheus e retenção temporária no ClickHouse. Alerta em tela do cliente (WebSocket) casado com alerta no WhatsApp — tudo auditável.',
    tech:['Grafana','Prometheus','Promtail','ClickHouse','WebSocket']},
-  {f:['integration'],tag:'integrações',badge:'+500 entregues',t:'Hub de integrações',
-   d:'Mais de 500 integrações entregues, do micro ao macro: APIs externas, web scraping, mensageria e sincronização de bancos. Foco em relatórios web seguros e otimizados que automatizam o dia a dia.',
+  {f:['integration'],tag:'integrações',badge:'+200 entregues',t:'Hub de integrações',
+   d:'Mais de 50 integrações entregues, do micro ao macro: APIs externas, web scraping, mensageria e sincronização de bancos. Foco em relatórios web seguros e otimizados que automatizam o dia a dia.',
    tech:['Go','Python','Web scraping','MQTT','REST']},
   {f:['ia','integration'],tag:'hardware + software',badge:'edge',t:'Micro apps locais & hardware',
    d:'Aplicativos que rodam localmente para diversos clientes, conectando hardware a softwares personalizados para controle e análise — a ponte entre o dispositivo físico e a inteligência do sistema.',
