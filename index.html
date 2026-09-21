@@ -129,6 +129,30 @@ h1,h2,h3{text-wrap:balance;color:var(--ink-strong);margin:0}
 .theme-btn:hover{border-color:var(--accent);transform:translateY(-1px)}
 @media(max-width:760px){.nav-links a:not(.nav-cta){display:none}}
 
+/* barra de abas — navegação rápida por seção */
+.sectabs{border-top:1px solid var(--line-soft)}
+.sectabs-inner{
+  max-width:var(--maxw);margin:0 auto;padding:8px 24px;display:flex;gap:2px;align-items:center;
+  overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
+}
+.sectabs-inner::-webkit-scrollbar{display:none}
+.sectabs a{
+  font-family:var(--mono);font-size:12.5px;color:var(--muted);padding:7px 16px;border-radius:100px;
+  white-space:nowrap;flex:0 0 auto;border:1px solid transparent;
+  transition:color .18s, background .18s, border-color .18s;
+}
+.sectabs a:hover{color:var(--ink-strong);background:var(--panel)}
+.sectabs a.on{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 38%,var(--line));background:var(--accent-glow)}
+section, header#top{scroll-margin-top:124px}
+@media(max-width:760px){
+  .sectabs-inner{
+    padding:8px 16px;
+    -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);
+    mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);
+  }
+  section, header#top{scroll-margin-top:112px}
+}
+
 /* ============================================================
    HERO
    ============================================================ */
@@ -314,6 +338,9 @@ section{padding:64px 0;position:relative}
 .stack-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:22px;box-shadow:var(--shadow)}
 .stack-card h3{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.05em;margin-bottom:16px;font-weight:600;display:flex;align-items:center;gap:8px}
 .stack-card h3 svg{width:15px;height:15px;flex:0 0 auto}
+.stack-card.hidden{display:none}
+.stack-grid .stack-card:last-child:nth-child(odd){grid-column:1/-1}
+.stack-grid .stack-card:last-child:nth-child(odd) .chips{max-width:none}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{
   font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--panel-2);
@@ -350,7 +377,7 @@ section{padding:64px 0;position:relative}
 .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);opacity:.0;transition:opacity .2s}
 .card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
 .card:hover::before{opacity:.9}
-.card .tag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.05em;margin-bottom:11px;display:flex;gap:8px;align-items:center}
+.card .tag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.05em;margin-bottom:11px;display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
 .card .tag .badge{color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 7px}
 .card h3{font-size:1.24rem;font-weight:700;letter-spacing:-.02em;margin-bottom:9px}
 .card p{color:var(--muted);font-size:.96rem;margin:0 0 16px;flex:1}
@@ -360,6 +387,32 @@ section{padding:64px 0;position:relative}
 .card .metric b{font-family:var(--mono);color:var(--live);font-size:1.05rem;font-weight:700}
 .card .metric b span{color:var(--muted);font-size:11px;font-weight:400;display:block}
 .card.hidden{display:none}
+.card .sub{font-family:var(--mono);font-size:11.5px;color:var(--muted-2);margin:-3px 0 11px;line-height:1.45}
+.card .kind{margin-left:auto;font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;border:1px solid var(--line);border-radius:100px;padding:2px 9px;flex:0 0 auto}
+.card .kind.prod{color:var(--live);border-color:color-mix(in srgb,var(--live) 42%,var(--line));background:color-mix(in srgb,var(--live) 9%,transparent)}
+.card .kind.cap{color:var(--muted-2);background:var(--panel-2)}
+.card .more{
+  font-family:var(--mono);font-size:11.5px;color:var(--accent);background:transparent;border:0;padding:0;
+  cursor:pointer;display:inline-flex;align-items:center;gap:6px;margin:0 0 14px;align-self:flex-start;letter-spacing:.03em;
+}
+.card .more:hover{text-decoration:underline}
+.card .more i{font-style:normal;transition:transform .2s;display:inline-block}
+.card.open .more i{transform:rotate(180deg)}
+.card .bul{
+  margin:0;padding:0;display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .28s cubic-bezier(.2,.7,.2,1);
+}
+.card.open .bul{grid-template-rows:1fr}
+.card .bul > div{overflow:hidden;min-height:0}
+.card .bul ul{list-style:none;margin:0;padding:0 0 16px}
+.card .bul li{
+  position:relative;padding:0 0 0 17px;margin:0 0 9px;color:var(--ink);font-size:.9rem;line-height:1.55;
+}
+.card .bul li:last-child{margin-bottom:0}
+.card .bul li::before{content:"▸";position:absolute;left:0;top:0;color:var(--accent);font-size:.82rem}
+.card .bul li b{color:var(--ink-strong);font-weight:650}
+.card .bul li code{font-family:var(--mono);font-size:.84rem;color:var(--accent);background:var(--panel-2);border:1px solid var(--line-soft);border-radius:5px;padding:1px 5px}
+.proj-note{font-family:var(--mono);color:var(--muted-2);font-size:12.5px;margin-top:20px;line-height:1.6}
 
 /* flagship interactive pipeline */
 .flagship{
@@ -469,13 +522,19 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
   <div class="nav-inner">
     <a href="#top" class="brand">lucas.costa<span class="dot">_</span></a>
     <div class="nav-links">
+      <a href="curriculo.html" class="nav-cta">currículo →</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Alternar tema" title="Alternar tema">◐</button>
+    </div>
+  </div>
+  <div class="sectabs">
+    <div class="sectabs-inner" id="sectabs" role="navigation" aria-label="Seções da página">
+      <a href="#top">início</a>
       <a href="#sobre">sobre</a>
       <a href="#stack">stack</a>
       <a href="#projetos">projetos</a>
       <a href="#clientes">clientes</a>
+      <a href="#trajetoria">trajetória</a>
       <a href="#contato">contato</a>
-      <a href="curriculo.html" class="nav-cta">currículo →</a>
-      <button class="theme-btn" id="themeBtn" aria-label="Alternar tema" title="Alternar tema">◐</button>
     </div>
   </div>
 </nav>
@@ -544,7 +603,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
     <!-- stats -->
     <div class="stats reveal" style="margin-top:22px">
       <div class="stat"><div class="num" data-count="200" data-suffix="+">0</div><div class="lab">entregas realizadas</div></div>
-      <div class="stat"><div class="num" data-count="5" data-suffix="+">0</div><div class="lab">anos em produção</div></div>
+      <div class="stat"><div class="num" data-count="8" data-suffix="+">0</div><div class="lab">anos em produção</div></div>
       <div class="stat"><div class="num" data-count="2" data-prefix="Go+">0</div><div class="lab">stack principal (Go · Python)</div></div>
       <div class="stat"><div class="num" data-count="8" data-suffix="+">0</div><div class="lab">clientes públicos e privados</div></div>
     </div>
@@ -599,14 +658,26 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
     <div class="sec-head reveal">
       <div class="eyebrow">stack</div>
       <h2>Ferramentas que uso em produção.</h2>
-      <p>Selecionadas pela necessidade real dos projetos — não por moda.</p>
+      <p>Selecionadas pela necessidade real dos projetos — não por moda. Use as abas para ir direto ao grupo que interessa.</p>
     </div>
-    <div class="stack-grid">
-      <div class="stack-card reveal">
+
+    <div class="filters reveal" id="stackTabs">
+      <button class="filter active" data-s="all">todas</button>
+      <button class="filter" data-s="lang">linguagens</button>
+      <button class="filter" data-s="db">bancos</button>
+      <button class="filter" data-s="msg">mensageria</button>
+      <button class="filter" data-s="infra">cloud &amp; devops</button>
+      <button class="filter" data-s="deploy">deploy &amp; domínios</button>
+      <button class="filter" data-s="observ">observabilidade</button>
+      <button class="filter" data-s="bi">BI &amp; IA</button>
+    </div>
+
+    <div class="stack-grid" id="stackGrid">
+      <div class="stack-card reveal" data-cat="lang">
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6"/><path d="m16 6 6 6-6 6"/></svg>linguagens</h3>
         <div class="chips">
-          <span class="chip lead">Go<span class="lv">produção</span></span>
-          <span class="chip lead">Python<span class="lv">avançado</span></span>
+          <span class="chip">Go <span class="lv">produção</span></span>
+          <span class="chip">Python <span class="lv">avançado</span></span>
           <span class="chip">TypeScript</span>
           <span class="chip">JavaScript</span>
           <span class="chip">HTML/CSS</span>
@@ -616,31 +687,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
           <span class="chip">DAX</span>
         </div>
       </div>
-      <div class="stack-card reveal">
-        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>mensageria &amp; tempo real</h3>
-        <div class="chips">
-          <span class="chip lead">RabbitMQ</span>
-          <span class="chip lead">MQTT</span>
-          <span class="chip">WebSocket</span>
-          <span class="chip">Webhook</span>
-          <span class="chip">Filas / Dead-letter</span>
-          <span class="chip">Event-driven</span>
-          <span class="chip">Microserviços</span>
-        </div>
-      </div>
-      <div class="stack-card reveal">
-        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>observabilidade &amp; logs</h3>
-        <div class="chips">
-          <span class="chip lead">Grafana</span>
-          <span class="chip">Prometheus</span>
-          <span class="chip">Promtail</span>
-          <span class="chip">ClickHouse</span>
-          <span class="chip">Logs JSON</span>
-          <span class="chip">Alertas proativos</span>
-          <span class="chip">Auditoria</span>
-        </div>
-      </div>
-      <div class="stack-card reveal">
+      <div class="stack-card reveal" data-cat="db">
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>bancos de dados</h3>
         <div class="chips">
           <span class="chip">PostgreSQL</span>
@@ -655,11 +702,23 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
           <span class="chip">SQLite</span>
         </div>
       </div>
-      <div class="stack-card reveal">
+      <div class="stack-card reveal" data-cat="msg">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>mensageria &amp; tempo real</h3>
+        <div class="chips">
+          <span class="chip">RabbitMQ</span>
+          <span class="chip">MQTT</span>
+          <span class="chip">WebSocket</span>
+          <span class="chip">Webhook</span>
+          <span class="chip">Filas / Dead-letter</span>
+          <span class="chip">Event-driven</span>
+          <span class="chip">Microserviços</span>
+        </div>
+      </div>
+      <div class="stack-card reveal" data-cat="infra">
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6 1.5A4 4 0 0 0 6.5 19z"/></svg>cloud, infra &amp; devops</h3>
         <div class="chips">
-          <span class="chip lead">Docker</span>
-          <span class="chip lead">Kubernetes</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Kubernetes</span>
           <span class="chip">Docker Compose</span>
           <span class="chip">Portainer</span>
           <span class="chip">CI/CD</span>
@@ -669,13 +728,39 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
           <span class="chip">Google Cloud</span>
         </div>
       </div>
-      <div class="stack-card reveal">
+      <div class="stack-card reveal" data-cat="deploy">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13v8"/><path d="m8 17 4-4 4 4"/><path d="M20.9 18.1A5 5 0 0 0 18 9h-1.3A8 8 0 1 0 3 16.3"/></svg>deploy, hosting &amp; domínios</h3>
+        <div class="chips">
+          <span class="chip">Vercel <span class="lv">deploy · edge</span></span>
+          <span class="chip">Netlify <span class="lv">deploy · build</span></span>
+          <span class="chip">Cloudflare <span class="lv">DNS · CDN · SSL</span></span>
+          <span class="chip">Supabase <span class="lv">Postgres · Auth</span></span>
+          <span class="chip">Blob Storage <span class="lv">Vercel · Azure</span></span>
+          <span class="chip">HostGator <span class="lv">hospedagem</span></span>
+          <span class="chip">GitHub Pages</span>
+          <span class="chip">Domínios / DNS</span>
+          <span class="chip">Deploy contínuo</span>
+        </div>
+      </div>
+      <div class="stack-card reveal" data-cat="observ">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>observabilidade &amp; logs</h3>
+        <div class="chips">
+          <span class="chip">Grafana</span>
+          <span class="chip">Prometheus</span>
+          <span class="chip">Promtail</span>
+          <span class="chip">ClickHouse</span>
+          <span class="chip">Logs JSON</span>
+          <span class="chip">Alertas proativos</span>
+          <span class="chip">Auditoria</span>
+        </div>
+      </div>
+      <div class="stack-card reveal" data-cat="bi">
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v2"/><path d="M12 10v7"/><path d="M17 6v11"/></svg>dados, BI &amp; IA</h3>
         <div class="chips">
           <span class="chip">Power BI</span>
           <span class="chip">Google Data Studio</span>
           <span class="chip">Klipfolio</span>
-          <span class="chip lead">FindFace</span>
+          <span class="chip">FindFace</span>
           <span class="chip">Reconhecimento facial</span>
           <span class="chip">OCR</span>
           <span class="chip">Web scraping</span>
@@ -690,8 +775,8 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="eyebrow">projetos</div>
-      <h2>Exemplos do que eu construo.</h2>
-      <p>Arquiteturas ilustrativas das minhas capacidades — genéricas e simplificadas para demonstração, não sistemas proprietários.</p>
+      <h2>Sistemas que projetei, escrevi e coloquei em produção.</h2>
+      <p>Seleção de projetos autorais em operação hoje, descritos pela arquitetura e pelo problema que resolveram. Detalhes sensíveis — domínios, credenciais e regras internas de cliente — foram omitidos. Os cartões marcados como <b>capacidade</b> são arquiteturas ilustrativas.</p>
     </div>
 
     <!-- FLAGSHIP: interactive pipeline -->
@@ -725,10 +810,12 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
       <button class="filter" data-f="integration">integração</button>
       <button class="filter" data-f="ia">IA / visão</button>
       <button class="filter" data-f="observ">observabilidade</button>
+      <button class="filter" data-f="infra">infra &amp; automação</button>
     </div>
 
     <!-- grid -->
     <div class="proj-grid" id="projGrid"></div>
+    <p class="proj-note reveal">// código-fonte sob NDA — posso detalhar arquitetura, decisões técnicas e trechos representativos em entrevista.</p>
   </div>
 </section>
 
@@ -876,40 +963,125 @@ selStage(0);
    PROJETOS
    ============================================================ */
 const projects = [
-  {f:['data','integration'],tag:'plataforma de dados',badge:'SQL → endpoint',t:'DataBoard — dados self-service',
-   d:'Sistema no estilo Databricks, feito à mão: o cliente conecta qualquer banco, escreve sua própria SQL e recebe um endpoint seguro com o resultado da query. Compartilhamento de dados entre bancos e arquivos na nuvem, com conexão segura endpoint-a-endpoint.',
-   tech:['Go','PostgreSQL','ClickHouse','REST','TLS']},
-  {f:['ia'],tag:'IA / visão computacional',badge:'tempo real',t:'Pipeline de faces em tempo real',
-   d:'Integração completa para viabilizar o envio de faces à IA em tempo real. Após várias iterações de tentativa e erro, cheguei a um ambiente capaz de processar milhares de faces em segundos.',
-   tech:['Go','Python','FindFace','RabbitMQ']},
-  {f:['alerts','integration'],tag:'orquestração de alertas',badge:'multicanal',t:'Central de Alertas',
+  /* ---------- sistemas em produção ---------- */
+  {kind:'prod', f:['data','integration'], tag:'plataforma de dados', badge:'multi-tenant',
+   t:'DataGate — plataforma de dados self-service',
+   sub:'API Go multi-tenant · SQL → endpoint REST',
+   d:'Plataforma que transforma consulta SQL em endpoint REST autenticado. O cliente cadastra a própria conexão (PostgreSQL, MySQL, ClickHouse ou MongoDB), escreve a query e recebe um endpoint versionado, cacheado e pronto para consumo — sem precisar de um back-end dedicado para cada relatório.',
+   bul:[
+     'Autenticação <b>segregada por domínio de confiança</b>: JWT de aplicação, bearer de IdP e token de recurso com segredos distintos, validados na subida — segredo compartilhado derruba o deploy em vez de virar risco silencioso.',
+     'Credenciais de conexão cifradas em repouso com <b>AES-256-GCM</b>, em envelope versionado com rotação de chaves e comando dedicado de re-encriptação.',
+     'Camada de execução com <b>cache em Redis</b>, jobs agendados via cron para materializar consultas pesadas, exportação para Excel e webhooks de entrega.',
+     'Borda endurecida: <b>CORS fail-closed</b>, rate limit por IP com proxies confiáveis declarados, auditoria de acesso e telemetria própria.',
+     'Painel administrativo embarcado, pipeline de CI e deploy versionado em Docker Compose.'
+   ],
+   tech:['Go 1.23','Gin','PostgreSQL','MySQL','ClickHouse','MongoDB','Redis','RabbitMQ','JWT','AES-256-GCM','Docker']},
+
+  {kind:'prod', f:['ia','integration'], tag:'IA / visão computacional', badge:'escala horizontal',
+   t:'FaceBridge — ingestão de imagens em tempo real',
+   sub:'Consumidor Go · fila → object storage → API facial',
+   d:'Ponte entre a fila de capturas, o object storage e a API de reconhecimento facial. Lê o caminho da imagem publicado na fila, baixa a captura do bucket, valida o arquivo, entrega ao facial e só remove o objeto quando o processamento conclui com sucesso. Roda em N réplicas processando milhares de imagens em paralelo.',
+   bul:[
+     'Topologia de filas com <b>retry por TTL, reprocessamento manual e dead-letter</b>: erro definitivo sai da fila, erro temporário volta sozinho. Um arquivo ruim nunca trava o consumo.',
+     '<b>Estabilização de imagem</b> antes do envio — confere que o tamanho do objeto parou de variar, eliminando os falsos “arquivo corrompido” causados por upload ainda em andamento.',
+     '<b>Sessão facial única compartilhada</b> entre todas as réplicas: sem isso, cada container fazia o próprio login e estourava o limite de tokens da API.',
+     'Circuit breaker nas chamadas externas, cache Redis de câmeras e timeout por mensagem com rota própria de reprocesso.',
+     'Logs JSON rotativos como fonte única das métricas no Grafana — sem instrumentação paralela para manter.'
+   ],
+   tech:['Go 1.25','RabbitMQ','Object Storage (OCI)','Redis','MQTT','Circuit breaker','Grafana','Docker']},
+
+  {kind:'prod', f:['ia','integration'], tag:'controle de acesso · setor público', badge:'3 serviços',
+   t:'FaceGuard — controle de acesso por reconhecimento facial',
+   sub:'Suíte de três serviços em Go sobre nuvem · rede pública de ensino',
+   d:'Três serviços que sustentam o controle de acesso por reconhecimento facial em uma rede pública de ensino: ingestão das capturas das câmeras, cadastro dos servidores na watch list e devolução dos reconhecimentos ao sistema de gestão do órgão.',
+   bul:[
+     '<b>Ingestão</b> — consumer de fila em nuvem disparado por evento de storage: concorrência configurável por réplica, visibility timeout calculado para o lote e comando de <i>replay</i> que relê o storage por prefixo e período para recuperar o que caiu na fila morta.',
+     '<b>Cadastro</b> — aplicação web que valida o servidor na base oficial do órgão e faz o vínculo automático na watch list do facial: sessão por cookie assinado com HMAC, rate limit por IP em janela deslizante e SQLite puro Go (sem cgo, binário estático).',
+     '<b>Devolução</b> — webhook que recebe os reconhecimentos da plataforma facial, descarta o que não é match e entrega ao sistema de gestão com token OAuth2 cacheado em Redis; falha transitória vai para retry com atraso, falha de validação vai direto para a fila morta.',
+     'Escala por composição: vazão total = réplicas × concorrência, ajustada por variável de ambiente sem tocar no código.'
+   ],
+   tech:['Go 1.25','Azure Blob Storage','Azure Queue + Event Grid','OAuth2','Redis','SQLite','Docker Compose','Grafana']},
+
+  {kind:'prod', f:['data','integration'], tag:'coletores & BI', badge:'reescrita Python → Go',
+   t:'VisionSync — coletores de vigilância para BI',
+   sub:'Jobs em lote · APIs de videomonitoramento e facial → MySQL',
+   d:'Família de coletores que materializa em MySQL os dados de plataformas de videomonitoramento e reconhecimento facial para consumo em BI, mais o serviço que consolida os indicadores de diretoria. Cada job executa, grava, registra o desfecho e sai — o agendamento é externo.',
+   bul:[
+     '<b>Disciplina de sessão</b>: uma sessão por execução, identificada por UUID derivado do nome do projeto, sessões órfãs podadas na inicialização e encerramento garantido no shutdown. Resolveu o acúmulo de sessões anônimas no servidor facial.',
+     '<b>Configuração incompleta agora falha cedo</b>: a versão anterior autenticava com credencial vazia, recebia 401 e encerrava com código 0 — cron e orquestrador viam sucesso. Hoje a validação lista todos os problemas no boot e sai com código diferente de zero.',
+     'Token redigido em todo o pipeline de log e cache de token compartilhado entre execuções.',
+     '<b>Consolidação de indicadores</b>: agregações anual, mensal e semanal por cliente executadas em paralelo com limite de concorrência, tabelas de histórico e carga incremental apenas do período corrente.'
+   ],
+   tech:['Go','MySQL','APIs de VMS','APIs de reconhecimento facial','Fila em nuvem','Redis','Docker']},
+
+  {kind:'prod', f:['alerts','data'], tag:'orquestração de alertas', badge:'envio bulk',
+   t:'AlertMail — relatórios de alerta por e-mail',
+   sub:'Serviço Go · MySQL → SMTP em conexão única',
+   d:'Consolida os alertas de cada cliente a partir do MySQL e entrega relatórios em texto e HTML aos destinatários corretos, resolvendo grupo de usuários, destinatários padrão e duplicidades antes de enviar.',
+   bul:[
+     '<b>Envio em bulk</b>: todas as mensagens saem por uma única conexão SMTP reutilizada, eliminando o handshake TLS por destinatário e derrubando o tempo total de entrega.',
+     'Validação de e-mail em duas camadas — sintaxe e <b>consulta MX com cache por domínio</b> — antes de gastar conexão com endereço inválido.',
+     'Deduplicação por destinatário: quem atende vários clientes recebe um relatório consolidado, não um e-mail por cliente.',
+     'Agendamento recarregado a cada execução, cache de execuções em disco e API HTTP para forçar envio, consultar status e inspecionar o cache.',
+     'Logger JSON estruturado com rotação própria por tamanho e fuso de São Paulo fixado.'
+   ],
+   tech:['Go','MySQL','SMTP','Templates HTML','REST','Docker','CI/CD']},
+
+  {kind:'prod', f:['infra','integration'], tag:'infra & automação', badge:'cron + API',
+   t:'CronDock — agendador de containers',
+   sub:'API REST Go · execução única garantida por imagem',
+   d:'Serviço que agenda a execução de imagens Docker por intervalo ou expressão cron através de uma API REST, garantindo que nunca exista mais de uma instância da mesma imagem rodando ao mesmo tempo.',
+   bul:[
+     '<b>Controle de instância única por imagem</b>: execução sobreposta é a causa clássica de um job de backup corromper o próprio resultado — aqui ela é impossível por construção.',
+     'CRUD completo das tarefas via API REST, com persistência das agendas e recarga no boot.',
+     'Dois modos de agendamento no mesmo modelo: intervalo em minutos (compatibilidade) e <b>expressão cron</b>, com o próximo disparo calculado e exposto na API.',
+     'Acompanhamento do status dos containers em execução, health check e graceful shutdown.'
+   ],
+   tech:['Go','Gin','Docker Engine API','cron','REST','Docker Compose']},
+
+  /* ---------- capacidades / arquiteturas ilustrativas ---------- */
+  {kind:'cap', f:['alerts','integration'], tag:'orquestração de alertas', badge:'multicanal',
+   t:'AlertHub — central de alertas multicanal',
    d:'Plataforma onde se cadastra acesso de WhatsApp, e-mail e Telegram e se gera um endpoint. Esse endpoint é reutilizado em qualquer integração para disparar alertas de forma segura e rápida.',
    tech:['Go','WhatsApp API','Telegram','SMTP','Webhook']},
-  {f:['observ','alerts'],tag:'observabilidade',badge:'auditoria',t:'Observabilidade fim a fim',
+  {kind:'cap', f:['observ','alerts'], tag:'observabilidade', badge:'auditoria',
+   t:'TraceOps — observabilidade fim a fim',
    d:'Camada de logs e alertas proativos: logs em JSON centralizados no Grafana, métricas no Prometheus e retenção temporária no ClickHouse. Alerta em tela do cliente (WebSocket) casado com alerta no WhatsApp — tudo auditável.',
    tech:['Grafana','Prometheus','Promtail','ClickHouse','WebSocket']},
-  {f:['integration'],tag:'integrações',badge:'+200 entregues',t:'Hub de integrações',
+  {kind:'cap', f:['integration'], tag:'integrações', badge:'+200 entregues',
+   t:'IntegraHub — integrações sob demanda',
    d:'Mais de 50 integrações entregues, do micro ao macro: APIs externas, web scraping, mensageria e sincronização de bancos. Foco em relatórios web seguros e otimizados que automatizam o dia a dia.',
    tech:['Go','Python','Web scraping','MQTT','REST']},
-  {f:['ia','integration'],tag:'hardware + software',badge:'edge',t:'Micro apps locais & hardware',
+  {kind:'cap', f:['ia','infra'], tag:'hardware + software', badge:'edge',
+   t:'EdgeLink — micro apps locais e hardware',
    d:'Aplicativos que rodam localmente para diversos clientes, conectando hardware a softwares personalizados para controle e análise — a ponte entre o dispositivo físico e a inteligência do sistema.',
    tech:['Go','Python','MQTT','SQLite']}
 ];
 const grid = document.getElementById('projGrid');
+const kindLabel = {prod:'produção', cap:'capacidade'};
 function renderProjects(filter='all'){
   grid.innerHTML='';
   projects.forEach(p=>{
     if(filter!=='all' && !p.f.includes(filter)) return;
     const c=document.createElement('article'); c.className='card';
     c.innerHTML = `
-      <div class="tag">// ${p.tag} <span class="badge">${p.badge}</span></div>
+      <div class="tag">// ${p.tag} <span class="badge">${p.badge}</span><span class="kind ${p.kind}">${kindLabel[p.kind]}</span></div>
       <h3>${p.t}</h3>
+      ${p.sub ? `<div class="sub">${p.sub}</div>` : ''}
       <p>${p.d}</p>
+      ${p.bul ? `<button class="more" type="button" aria-expanded="false">detalhes técnicos <i>▾</i></button>
+      <div class="bul"><div><ul>${p.bul.map(b=>`<li>${b}</li>`).join('')}</ul></div></div>` : ''}
       <div class="tech">${p.tech.map(t=>`<span>${t}</span>`).join('')}</div>`;
     grid.appendChild(c);
   });
 }
 renderProjects();
+grid.addEventListener('click',e=>{
+  const b=e.target.closest('.more'); if(!b) return;
+  const card=b.closest('.card'); const open=card.classList.toggle('open');
+  b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  b.firstChild.nodeValue = open ? 'ocultar detalhes ' : 'detalhes técnicos ';
+});
 document.getElementById('filters').addEventListener('click',e=>{
   const b=e.target.closest('.filter'); if(!b) return;
   document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));
@@ -1014,7 +1186,10 @@ const BRAND = {
   'Azure':{t:'Az',c:'#0078D4'},'Oracle Cloud':{t:'OCI',c:'#F80000',fs:6},'Google Cloud':{t:'GC',c:'#4285F4'},
   'Power BI':{t:'BI',c:'#F2C811',d:1},'Google Data Studio':{t:'DS',c:'#4285F4'},'Klipfolio':{t:'Kf',c:'#0B8A00'},
   'FindFace':{t:'FF',c:'#A855F7'},'Reconhecimento facial':{t:'RF',c:'#A855F7'},'OCR':{t:'OCR',c:'#38BDF8',d:1,fs:6},
-  'Web scraping':{t:'Sc',c:'#22C55E'}
+  'Web scraping':{t:'Sc',c:'#22C55E'},
+  'Vercel':{t:'▲',c:'#111111'},'Netlify':{t:'Nf',c:'#00C7B7',d:1},'Cloudflare':{t:'CF',c:'#F38020'},
+  'Supabase':{t:'Sb',c:'#3ECF8E',d:1},'Blob Storage':{t:'Bl',c:'#7C3AED'},'HostGator':{t:'HG',c:'#005F86'},
+  'GitHub Pages':{t:'GH',c:'#181717'},'Domínios / DNS':{t:'DNS',c:'#0EA5E9',fs:5.5},'Deploy contínuo':{t:'CD',c:'#22C55E'}
 };
 document.querySelectorAll('.stack-card .chip').forEach(chip=>{
   let label='';
@@ -1026,6 +1201,47 @@ document.querySelectorAll('.stack-card .chip').forEach(chip=>{
   if(b.fs) tile.style.fontSize=b.fs+'px';
   chip.insertBefore(tile, chip.firstChild);
 });
+
+/* ============================================================
+   ABAS DO STACK
+   ============================================================ */
+const stackGrid=document.getElementById('stackGrid');
+document.getElementById('stackTabs').addEventListener('click',e=>{
+  const b=e.target.closest('.filter'); if(!b) return;
+  document.querySelectorAll('#stackTabs .filter').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  const f=b.dataset.s;
+  stackGrid.querySelectorAll('.stack-card').forEach(c=>{
+    c.classList.toggle('hidden', f!=='all' && c.dataset.cat!==f);
+  });
+});
+
+/* ============================================================
+   SCROLL-SPY DAS ABAS DE SEÇÃO
+   ============================================================ */
+const tabLinks=[...document.querySelectorAll('#sectabs a')];
+const targets=tabLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+function syncTabs(){
+  const line=window.scrollY+140;
+  let idx=0;
+  targets.forEach((el,i)=>{ if(el.offsetTop<=line) idx=i; });
+  if(window.innerHeight+window.scrollY>=document.body.offsetHeight-4) idx=targets.length-1;
+  tabLinks.forEach((a,i)=>a.classList.toggle('on', i===idx));
+  const on=tabLinks[idx];
+  if(on){
+    const bar=document.getElementById('sectabs');
+    const l=on.offsetLeft, r=l+on.offsetWidth;
+    if(l<bar.scrollLeft) bar.scrollTo({left:l-16,behavior:'smooth'});
+    else if(r>bar.scrollLeft+bar.clientWidth) bar.scrollTo({left:r-bar.clientWidth+16,behavior:'smooth'});
+  }
+}
+let tabTick=false;
+addEventListener('scroll',()=>{
+  if(tabTick) return; tabTick=true;
+  requestAnimationFrame(()=>{ syncTabs(); tabTick=false; });
+},{passive:true});
+addEventListener('resize',syncTabs);
+syncTabs();
 
 document.getElementById('yr').textContent=new Date().getFullYear();
 </script>
