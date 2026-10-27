@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lucas Costa — Desenvolvedor Back-End</title>
-<meta name="description" content="Portfólio de Lucas dos Santos Costa — desenvolvedor back-end especializado em sistemas orientados a eventos, integrações de alta escala, mensageria, observabilidade e reconhecimento facial em tempo real (Go + Python)." />
+<meta name="description" data-i18n-attr="content" content="Portfólio de Lucas dos Santos Costa — desenvolvedor back-end especializado em sistemas orientados a eventos, integrações de alta escala, mensageria, observabilidade e reconhecimento facial em tempo real (Go + Python). Entrega com Git flow, pipelines CI/CD, testes automatizados e homologação." />
 <style>
 /* ============================================================
    TOKENS — telemetry console
@@ -18,7 +18,7 @@
   --ink:#c7d0db;
   --ink-strong:#eef3f8;
   --muted:#7a8899;
-  --muted-2:#5a6673;
+  --muted-2:#738192;
   --accent:#38bdf8;
   --accent-deep:#0ea5e9;
   --live:#34d399;
@@ -42,24 +42,26 @@
     --ink:#2b3441;
     --ink-strong:#0f1720;
     --muted:#5f6b7a;
-    --muted-2:#8a95a4;
+    --muted-2:#667282;
     --accent:#0284c7;
     --accent-deep:#0369a1;
     --live:#0d9d6e;
+    --warn:#b45309;
+    --crit:#dc2626;
     --accent-glow:rgba(2,132,199,.12);
     --shadow:0 1px 0 rgba(0,0,0,.02), 0 20px 44px -28px rgba(20,40,70,.35);
   }
 }
 :root[data-theme="dark"]{
   --ground:#0a0e14;--panel:#121821;--panel-2:#161d28;--line:#232c3a;--line-soft:#1b2330;
-  --ink:#c7d0db;--ink-strong:#eef3f8;--muted:#7a8899;--muted-2:#5a6673;
-  --accent:#38bdf8;--accent-deep:#0ea5e9;--live:#34d399;--accent-glow:rgba(56,189,248,.16);
+  --ink:#c7d0db;--ink-strong:#eef3f8;--muted:#7a8899;--muted-2:#738192;
+  --accent:#38bdf8;--accent-deep:#0ea5e9;--live:#34d399;--warn:#fbbf24;--crit:#f87171;--accent-glow:rgba(56,189,248,.16);
   --shadow:0 1px 0 rgba(255,255,255,.03), 0 18px 48px -24px rgba(0,0,0,.8);
 }
 :root[data-theme="light"]{
   --ground:#f4f6fa;--panel:#ffffff;--panel-2:#f7f9fc;--line:#dfe5ee;--line-soft:#eaeef4;
-  --ink:#2b3441;--ink-strong:#0f1720;--muted:#5f6b7a;--muted-2:#8a95a4;
-  --accent:#0284c7;--accent-deep:#0369a1;--live:#0d9d6e;--accent-glow:rgba(2,132,199,.12);
+  --ink:#2b3441;--ink-strong:#0f1720;--muted:#5f6b7a;--muted-2:#667282;
+  --accent:#0284c7;--accent-deep:#0369a1;--live:#0d9d6e;--warn:#b45309;--crit:#dc2626;--accent-glow:rgba(2,132,199,.12);
   --shadow:0 1px 0 rgba(0,0,0,.02), 0 20px 44px -28px rgba(20,40,70,.35);
 }
 
@@ -128,6 +130,20 @@ h1,h2,h3{text-wrap:balance;color:var(--ink-strong);margin:0}
 }
 .theme-btn:hover{border-color:var(--accent);transform:translateY(-1px)}
 @media(max-width:760px){.nav-links a:not(.nav-cta){display:none}}
+/* seletor de idioma */
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--panel)}
+.lang button{
+  font-family:var(--mono);font-size:12.5px;color:var(--muted);background:transparent;border:0;
+  height:36px;min-width:38px;padding:0 10px;cursor:pointer;transition:color .18s, background .18s;
+}
+.lang button + button{border-left:1px solid var(--line)}
+.lang button:hover{color:var(--ink-strong)}
+.lang button.on{color:var(--accent);background:var(--accent-glow)}
+.lang button:focus-visible{outline-offset:-2px}
+@media(max-width:520px){
+  .nav-inner{gap:12px}
+  .nav-cta{display:none}
+}
 
 /* barra de abas — navegação rápida por seção */
 .sectabs{border-top:1px solid var(--line-soft)}
@@ -156,13 +172,13 @@ section, header#top{scroll-margin-top:124px}
 /* ============================================================
    HERO
    ============================================================ */
-.hero{padding:78px 0 46px;position:relative}
+.hero{padding:78px 0 46px;position:relative;overflow-x:clip}
 .status{
   display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12.5px;
   color:var(--muted);border:1px solid var(--line);background:var(--panel);
   padding:7px 13px;border-radius:100px;margin-bottom:26px;
 }
-.pulse{width:8px;height:8px;border-radius:50%;background:var(--live);position:relative}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--live);position:relative;flex:0 0 auto}
 .pulse::after{content:"";position:absolute;inset:-4px;border-radius:50%;background:var(--live);opacity:.35;animation:pulse 2s ease-out infinite}
 @keyframes pulse{0%{transform:scale(.6);opacity:.5}100%{transform:scale(2.4);opacity:0}}
 
@@ -210,7 +226,7 @@ section, header#top{scroll-margin-top:124px}
   background:var(--panel-2);border:1px solid var(--line);color:var(--accent);
 }
 .flow-ic svg{width:21px;height:21px}
-.flow-node small{font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.3}
+.flow-node small{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.3}
 .flow-link{flex:1 1 auto;height:2px;background:var(--line);position:relative;border-radius:2px;min-width:14px}
 .flow-link .pkt{
   position:absolute;top:50%;left:0;width:6px;height:6px;border-radius:50%;background:var(--accent);
@@ -388,7 +404,7 @@ section{padding:64px 0;position:relative}
 .card .metric b span{color:var(--muted);font-size:11px;font-weight:400;display:block}
 .card.hidden{display:none}
 .card .sub{font-family:var(--mono);font-size:11.5px;color:var(--muted-2);margin:-3px 0 11px;line-height:1.45}
-.card .kind{margin-left:auto;font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;border:1px solid var(--line);border-radius:100px;padding:2px 9px;flex:0 0 auto}
+.card .kind{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;border:1px solid var(--line);border-radius:100px;padding:2px 9px;flex:0 0 auto}
 .card .kind.prod{color:var(--live);border-color:color-mix(in srgb,var(--live) 42%,var(--line));background:color-mix(in srgb,var(--live) 9%,transparent)}
 .card .kind.cap{color:var(--muted-2);background:var(--panel-2)}
 .card .more{
@@ -423,7 +439,7 @@ section{padding:64px 0;position:relative}
 .flag-top .tag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.05em;margin-bottom:8px}
 .flag-top h3{font-size:1.5rem;letter-spacing:-.025em}
 .flag-top p{color:var(--muted);margin:8px 0 0;max-width:58ch;font-size:.98rem}
-.flag-badges{display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0}
+.flag-badges{display:flex;gap:8px;flex-wrap:wrap;max-width:100%}
 .flag-badges span{font-family:var(--mono);font-size:11px;color:var(--ink);border:1px solid var(--line);border-radius:7px;padding:5px 9px;background:var(--panel)}
 
 .pipe{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:6px}
@@ -442,7 +458,7 @@ section{padding:64px 0;position:relative}
   animation:hop 2.4s linear infinite;
 }
 @keyframes hop{0%{right:-24px;opacity:0}20%{opacity:1}80%{opacity:1}100%{right:-4px;opacity:0}}
-.pnode .pn-n{font-family:var(--mono);font-size:10px;color:var(--muted-2)}
+.pnode .pn-n{font-family:var(--mono);font-size:11px;color:var(--muted-2)}
 .pnode .pn-ic{color:var(--accent);margin:6px 0 8px}
 .pnode .pn-ic svg{width:20px;height:20px}
 .pnode .pn-t{font-family:var(--mono);font-size:12px;color:var(--ink-strong);font-weight:600;line-height:1.25}
@@ -460,8 +476,80 @@ section{padding:64px 0;position:relative}
 .pdetail ul{margin:12px 0 0;padding-left:18px;color:var(--muted);font-size:.92rem}
 .pdetail li{margin:4px 0}
 
+.about-body a{color:var(--accent)}
+.about-body a:hover{text-decoration:underline}
+
+/* atuação — ledger de frentes */
+.ledger{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);box-shadow:var(--shadow);overflow:hidden}
+.lrow{display:grid;grid-template-columns:minmax(220px,.85fr) 1.6fr;gap:10px 36px;padding:22px 26px;border-bottom:1px solid var(--line-soft)}
+.lrow:last-child{border-bottom:0}
+.lrow h3{font-size:1.04rem;font-weight:700;letter-spacing:-.015em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.lrow p{color:var(--muted);font-size:.92rem;margin:6px 0 0;max-width:44ch}
+.lrow .live{
+  font-family:var(--mono);font-size:10.5px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--live);
+  border:1px solid color-mix(in srgb,var(--live) 42%,var(--line));background:color-mix(in srgb,var(--live) 9%,transparent);
+  border-radius:100px;padding:2px 9px;
+}
+.lchips{display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start}
+.lchips span{font-family:var(--mono);font-size:12px;color:var(--ink);background:var(--panel-2);border:1px solid var(--line-soft);padding:4px 9px;border-radius:6px}
+.lchips span b{color:var(--accent);font-weight:700}
+@media(max-width:760px){.lrow{grid-template-columns:1fr;padding:20px}}
+
+/* método — caminho do código (git flow) */
+.eyebrow.sub{display:flex;margin:44px 0 16px}
+.gf-scroll{overflow-x:auto;padding-bottom:6px}
+.gf-hint{display:none;font-family:var(--mono);font-size:11.5px;color:var(--muted-2);margin:4px 0 0}
+@media(max-width:960px){
+  .gf-scroll{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent)}
+  .gf-hint{display:block}
+}
+.gf{display:block;min-width:900px;width:100%;height:auto}
+.gf text{font-family:var(--mono);font-size:13px}
+.gf .lane-line{stroke:var(--line);stroke-width:1;stroke-dasharray:3 5}
+.gf .edge{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.gf .s-feat{stroke:var(--muted-2)}
+.gf .s-dev{stroke:var(--accent)}
+.gf .s-stg{stroke:var(--warn)}
+.gf .s-main{stroke:var(--live)}
+.gf .dot{fill:var(--panel);stroke-width:2.5}
+.gf .dot.f-dev{fill:var(--accent)}
+.gf .dot.f-stg{fill:var(--warn)}
+.gf .dot.f-main{fill:var(--live)}
+.gf .t-feat{fill:var(--muted)}
+.gf .t-dev{fill:var(--accent)}
+.gf .t-stg{fill:var(--warn)}
+.gf .t-main,.gf .t-ok{fill:var(--live)}
+.gf .t-crit{fill:var(--crit)}
+.gf .t-note{fill:var(--muted);font-size:12px}
+.gf .s-crit{stroke:var(--crit)}
+.gf .dash{stroke-dasharray:5 5}
+.gf .gate{fill:var(--warn);stroke:var(--panel);stroke-width:1.5}
+.gf .band{fill:color-mix(in srgb,var(--warn) 9%,transparent);stroke:color-mix(in srgb,var(--warn) 45%,transparent);stroke-width:1;stroke-dasharray:4 4}
+.gf-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:20px}
+.gf-note{font-family:var(--mono);font-size:12px;color:var(--muted-2);margin:18px 0 0;line-height:1.6;max-width:90ch}
+.gf-step{border:1px solid var(--line);border-top:3px solid var(--sc,var(--accent));border-radius:11px;background:var(--panel);padding:15px 16px 16px}
+.gf-step .n{font-family:var(--mono);font-size:11px;color:var(--muted-2)}
+.gf-step h4{font-family:var(--mono);font-size:13.5px;font-weight:600;color:var(--ink-strong);margin:6px 0 2px}
+.gf-step .role{font-family:var(--mono);font-size:11.5px;color:var(--sc,var(--accent));margin-bottom:8px}
+.gf-step p{color:var(--muted);font-size:.88rem;margin:0;line-height:1.55}
+
+/* método — práticas */
+.practices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:960px){.practices{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.practices{grid-template-columns:1fr}}
+.pcard{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:22px;box-shadow:var(--shadow)}
+.pcard .ph{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.pcard .pi{width:38px;height:38px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);color:var(--accent);display:grid;place-items:center;flex:0 0 auto}
+.pcard .pi svg{width:19px;height:19px}
+.pcard h3{font-size:1.04rem;font-weight:700;letter-spacing:-.015em;line-height:1.25}
+.pcard ul{list-style:none;margin:0;padding:0}
+.pcard li{position:relative;padding:0 0 0 17px;margin:0 0 9px;color:var(--ink);font-size:.92rem;line-height:1.55}
+.pcard li:last-child{margin-bottom:0}
+.pcard li::before{content:"▸";position:absolute;left:0;top:0;color:var(--accent);font-size:.82rem}
+.pcard li b{color:var(--ink-strong);font-weight:650}
+
 /* clients */
-.clients{display:flex;flex-wrap:wrap;gap:12px}
+.clients{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
 .client{
   display:flex;align-items:center;gap:11px;border:1px solid var(--line);background:var(--panel);
   border-radius:11px;padding:14px 18px;box-shadow:var(--shadow);transition:border-color .18s, transform .18s;
@@ -523,15 +611,22 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
     <a href="#top" class="brand">lucas.costa<span class="dot">_</span></a>
     <div class="nav-links">
       <a href="curriculo.html" class="nav-cta">currículo →</a>
-      <button class="theme-btn" id="themeBtn" aria-label="Alternar tema" title="Alternar tema">◐</button>
+      <div class="lang" role="group" aria-label="Idioma" data-i18n-attr="aria-label" data-i18n-skip>
+        <button type="button" data-lang="pt" lang="pt" title="Português" aria-pressed="true">PT</button>
+        <button type="button" data-lang="en" lang="en" title="English (US)" aria-pressed="false">EN</button>
+        <button type="button" data-lang="es" lang="es" title="Español" aria-pressed="false">ES</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" aria-label="Alternar tema" title="Alternar tema" data-i18n-attr="aria-label,title">◐</button>
     </div>
   </div>
   <div class="sectabs">
-    <div class="sectabs-inner" id="sectabs" role="navigation" aria-label="Seções da página">
+    <div class="sectabs-inner" id="sectabs" role="navigation" aria-label="Seções da página" data-i18n-attr="aria-label">
       <a href="#top">início</a>
       <a href="#sobre">sobre</a>
       <a href="#stack">stack</a>
       <a href="#projetos">projetos</a>
+      <a href="#atuacao">atuação</a>
+      <a href="#metodo">método</a>
       <a href="#clientes">clientes</a>
       <a href="#trajetoria">trajetória</a>
       <a href="#contato">contato</a>
@@ -546,8 +641,8 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
       <div class="hero-copy">
         <div class="status"><span class="pulse"></span> disponível para novos projetos · Estância Velha / Porto Alegre — RS</div>
         <h1>Lucas dos<br>Santos <span class="grad">Costa</span></h1>
-        <div class="role-line" id="roleLine"><span id="roleText"></span><span class="caret">▋</span></div>
-        <p class="lede">
+        <div class="role-line" id="roleLine"><span id="roleText" data-i18n-skip></span><span class="caret">▋</span></div>
+        <p class="lede" data-i18n>
           Construo <b>sistemas orientados a eventos</b> que processam dados em tempo real e conversam
           com o mundo por meio de <b>integrações</b>. Já entreguei <b>+50 integrações</b> — do micro ao
           macro — em <b>Go</b> e <b>Python</b>, com mensageria, observabilidade fim a fim e pipelines de
@@ -604,7 +699,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
     <div class="stats reveal" style="margin-top:22px">
       <div class="stat"><div class="num" data-count="200" data-suffix="+">0</div><div class="lab">entregas realizadas</div></div>
       <div class="stat"><div class="num" data-count="8" data-suffix="+">0</div><div class="lab">anos em produção</div></div>
-      <div class="stat"><div class="num" data-count="2" data-prefix="Go+">0</div><div class="lab">stack principal (Go · Python)</div></div>
+      <div class="stat"><div class="num">Go<span class="plus">+</span>Py</div><div class="lab">stack principal em produção</div></div>
       <div class="stat"><div class="num" data-count="8" data-suffix="+">0</div><div class="lab">clientes públicos e privados</div></div>
     </div>
   </div>
@@ -619,32 +714,30 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
     </div>
     <div class="about-grid">
       <div class="about-body reveal">
-        <p>
-          Sou desenvolvedor back-end com foco em <b>automação inteligente</b>, <b>integrações</b> e
-          <b>eficiência de sistemas</b>. Meu forte é conectar o que não conversa: bancos de dados
-          diferentes, APIs externas, hardware, filas de mensagem e IA — sempre com <b>segurança</b>
-          e <b>auditoria</b> como padrão, não como enfeite.
+        <p data-i18n>
+          Desenvolvo <b>sistemas orientados a eventos</b>, <b>integrações</b> e <b>automações</b> para
+          clientes públicos e privados, de aplicações locais a plataformas completas de dados, alertas
+          e reconhecimento facial. Acompanho o ciclo inteiro: desenho, implementação, publicação e
+          <b>sustentação em produção</b>.
         </p>
-        <p>
-          A maior parte do que construo é em <b>Go</b>, pela performance e concorrência. Quando o
-          desafio é <b>análise pesada de dados</b>, uso <b>Python</b> — e quando preciso das duas
-          coisas, integro os dois. Já desenvolvi desde <b>micro apps rodando localmente</b> para
-          clientes até <b>plataformas completas</b> de dados, alertas e reconhecimento facial.
+        <p data-i18n>
+          Uso <b>Go</b> onde desempenho e concorrência importam e <b>Python</b> na análise de dados e
+          em provas de conceito. <b>Segurança</b> e <b>auditoria</b> entram no desenho, não depois.
+          Apoio tecnicamente os demais desenvolvedores e participo das reuniões técnicas com
+          clientes, traduzindo requisitos em solução.
         </p>
-        <p>
-          <b>Back-end é meu foco principal</b>, mas atuo como full-stack pragmático: quando o projeto
-          pede, cuido de <b>DevOps</b> (Docker, Kubernetes) e do <b>front-end</b>. Já participei do
-          desenvolvimento das principais versões do produto onde trabalho, evoluindo o sistema e
-          dando suporte contínuo.
+        <p data-i18n>
+          Entrego com <b>ambientes separados</b>, <b>pipelines e testes automatizados</b> e comunicação
+          transparente com a equipe e o cliente. <a href="#metodo">Veja o método →</a>
         </p>
       </div>
       <div class="about-card reveal">
         <div class="row"><span class="k">função</span><span class="v">Back-End Pleno</span></div>
-        <div class="row"><span class="k">também</span><span class="v">DevOps · Front-end</span></div>
+        <div class="row"><span class="k">também</span><span class="v">DevOps · Docker · Front-end</span></div>
         <div class="row"><span class="k">linguagens</span><span class="v">Go · Python · TS</span></div>
-        <div class="row"><span class="k">infra</span><span class="v">Docker · Kubernetes</span></div>
+        <div class="row"><span class="k">dados</span><span class="v">PostgreSQL · MongoDB · Redis</span></div>
         <div class="row"><span class="k">mensageria</span><span class="v">RabbitMQ · MQTT</span></div>
-        <div class="row"><span class="k">cloud</span><span class="v">AWS · Azure · OCI</span></div>
+        <div class="row"><span class="k">entrega</span><span class="v">Git flow · CI/CD · testes</span></div>
         <div class="row"><span class="k">local</span><span class="v">RS — Brasil</span></div>
         <div class="row"><span class="k">status</span><span class="v"><span class="on">● aberto a propostas</span></span></div>
       </div>
@@ -664,10 +757,11 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
     <div class="filters reveal" id="stackTabs">
       <button class="filter active" data-s="all">todas</button>
       <button class="filter" data-s="lang">linguagens</button>
-      <button class="filter" data-s="db">bancos</button>
       <button class="filter" data-s="msg">mensageria</button>
-      <button class="filter" data-s="infra">cloud &amp; devops</button>
+      <button class="filter" data-s="db">bancos &amp; cache</button>
       <button class="filter" data-s="deploy">deploy &amp; domínios</button>
+      <button class="filter" data-s="infra">cloud &amp; devops</button>
+      <button class="filter" data-s="deliv">entrega &amp; qualidade</button>
       <button class="filter" data-s="observ">observabilidade</button>
       <button class="filter" data-s="bi">BI &amp; IA</button>
     </div>
@@ -687,21 +781,6 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
           <span class="chip">DAX</span>
         </div>
       </div>
-      <div class="stack-card reveal" data-cat="db">
-        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>bancos de dados</h3>
-        <div class="chips">
-          <span class="chip">PostgreSQL</span>
-          <span class="chip">MySQL</span>
-          <span class="chip">Oracle</span>
-          <span class="chip">SQL Server</span>
-          <span class="chip">MariaDB</span>
-          <span class="chip">MongoDB</span>
-          <span class="chip">Redis</span>
-          <span class="chip">ElasticSearch</span>
-          <span class="chip">ClickHouse</span>
-          <span class="chip">SQLite</span>
-        </div>
-      </div>
       <div class="stack-card reveal" data-cat="msg">
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>mensageria &amp; tempo real</h3>
         <div class="chips">
@@ -712,6 +791,35 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
           <span class="chip">Filas / Dead-letter</span>
           <span class="chip">Event-driven</span>
           <span class="chip">Microserviços</span>
+        </div>
+      </div>
+      <div class="stack-card reveal" data-cat="db">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>bancos de dados &amp; cache</h3>
+        <div class="chips">
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">MySQL</span>
+          <span class="chip">Oracle</span>
+          <span class="chip">SQL Server</span>
+          <span class="chip">MariaDB</span>
+          <span class="chip">MongoDB <span class="lv">NoSQL</span></span>
+          <span class="chip">Redis <span class="lv">cache · sessão · tokens</span></span>
+          <span class="chip">ElasticSearch <span class="lv">busca</span></span>
+          <span class="chip">ClickHouse <span class="lv">logs · métricas</span></span>
+          <span class="chip">SQLite</span>
+        </div>
+      </div>
+      <div class="stack-card reveal" data-cat="deploy">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13v8"/><path d="m8 17 4-4 4 4"/><path d="M20.9 18.1A5 5 0 0 0 18 9h-1.3A8 8 0 1 0 3 16.3"/></svg>deploy, hosting &amp; domínios</h3>
+        <div class="chips">
+          <span class="chip">Vercel <span class="lv">deploy · edge</span></span>
+          <span class="chip">Netlify <span class="lv">deploy · build</span></span>
+          <span class="chip">Cloudflare <span class="lv">DNS · CDN · SSL</span></span>
+          <span class="chip">Supabase <span class="lv">Postgres · Auth</span></span>
+          <span class="chip">Blob Storage <span class="lv">Vercel · Azure</span></span>
+          <span class="chip">HostGator <span class="lv">hospedagem</span></span>
+          <span class="chip">GitHub Pages</span>
+          <span class="chip">Domínios / DNS</span>
+          <span class="chip">Deploy contínuo</span>
         </div>
       </div>
       <div class="stack-card reveal" data-cat="infra">
@@ -728,18 +836,15 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
           <span class="chip">Google Cloud</span>
         </div>
       </div>
-      <div class="stack-card reveal" data-cat="deploy">
-        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13v8"/><path d="m8 17 4-4 4 4"/><path d="M20.9 18.1A5 5 0 0 0 18 9h-1.3A8 8 0 1 0 3 16.3"/></svg>deploy, hosting &amp; domínios</h3>
+      <div class="stack-card reveal" data-cat="deliv">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="5" r="2.2"/><circle cx="6" cy="19" r="2.2"/><circle cx="18" cy="8" r="2.2"/><path d="M6 7.2v9.6"/><path d="M18 10.2c0 4-6 3-11 7"/></svg>versionamento, qualidade &amp; entrega</h3>
         <div class="chips">
-          <span class="chip">Vercel <span class="lv">deploy · edge</span></span>
-          <span class="chip">Netlify <span class="lv">deploy · build</span></span>
-          <span class="chip">Cloudflare <span class="lv">DNS · CDN · SSL</span></span>
-          <span class="chip">Supabase <span class="lv">Postgres · Auth</span></span>
-          <span class="chip">Blob Storage <span class="lv">Vercel · Azure</span></span>
-          <span class="chip">HostGator <span class="lv">hospedagem</span></span>
-          <span class="chip">GitHub Pages</span>
-          <span class="chip">Domínios / DNS</span>
-          <span class="chip">Deploy contínuo</span>
+          <span class="chip">Git</span>
+          <span class="chip">Git flow <span class="lv">develop · staging · main</span></span>
+          <span class="chip">Pipelines CI/CD</span>
+          <span class="chip">Testes automatizados</span>
+          <span class="chip">Homologação / staging</span>
+          <span class="chip">Releases versionadas</span>
         </div>
       </div>
       <div class="stack-card reveal" data-cat="observ">
@@ -776,7 +881,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
     <div class="sec-head reveal">
       <div class="eyebrow">projetos</div>
       <h2>Sistemas que projetei, escrevi e coloquei em produção.</h2>
-      <p>Seleção de projetos autorais em operação hoje, descritos pela arquitetura e pelo problema que resolveram. Detalhes sensíveis — domínios, credenciais e regras internas de cliente — foram omitidos. Os cartões marcados como <b>capacidade</b> são arquiteturas ilustrativas.</p>
+      <p data-i18n>Seleção de projetos autorais em operação hoje, descritos pela arquitetura e pelo problema que resolveram. Detalhes sensíveis — domínios, credenciais e regras internas de cliente — foram omitidos. Os cartões marcados como <b>capacidade</b> são arquiteturas ilustrativas.</p>
     </div>
 
     <!-- FLAGSHIP: interactive pipeline -->
@@ -785,16 +890,16 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
         <div>
           <div class="tag">// arquitetura ilustrativa · event-driven</div>
           <h3>VisionFlow — reconhecimento facial em tempo real</h3>
-          <p>Exemplo de arquitetura orientada a eventos que recebe imagens de múltiplas fontes, distribui por filas e entrega a um serviço de IA. Ilustra um desafio real de <b>engenharia de fluxo</b>: viabilizar o processamento de milhares de faces em segundos. Clique em cada estágio para ver o que acontece.</p>
+          <p data-i18n>Exemplo de arquitetura orientada a eventos que recebe imagens de múltiplas fontes, distribui por filas e entrega a um serviço de IA. Ilustra um desafio real de <b>engenharia de fluxo</b>: viabilizar o processamento de milhares de faces em segundos. Clique em cada estágio para ver o que acontece.</p>
         </div>
         <div class="flag-badges">
           <span>Go</span><span>Python</span><span>RabbitMQ</span><span>ClickHouse</span><span>Grafana</span>
         </div>
       </div>
 
-      <div class="pipe" id="pipe" role="tablist" aria-label="Estágios do pipeline VisionFlow"></div>
+      <div class="pipe" id="pipe" role="tablist" aria-label="Estágios do pipeline VisionFlow" data-i18n-attr="aria-label" data-i18n-skip></div>
 
-      <div class="pdetail" id="pdetail" role="tabpanel" aria-live="polite">
+      <div class="pdetail" id="pdetail" role="tabpanel" aria-live="polite" data-i18n-skip>
         <div class="pd-h" id="pdH">estágio 01</div>
         <h4 id="pdT"></h4>
         <p id="pdP"></p>
@@ -814,8 +919,120 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
     </div>
 
     <!-- grid -->
-    <div class="proj-grid" id="projGrid"></div>
+    <div class="proj-grid" id="projGrid" data-i18n-skip></div>
     <p class="proj-note reveal">// código-fonte sob NDA — posso detalhar arquitetura, decisões técnicas e trechos representativos em entrevista.</p>
+  </div>
+</section>
+
+<!-- ATUAÇÃO -->
+<section id="atuacao">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">atuação</div>
+      <h2>Frentes de trabalho, do produto à sustentação.</h2>
+      <p>Produtos, projetos por cliente e rotinas internas em que atuo.</p>
+    </div>
+    <div class="ledger reveal" id="areas" data-i18n-skip></div>
+  </div>
+</section>
+
+<!-- MÉTODO -->
+<section id="metodo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">método</div>
+      <h2>Como eu entrego: do commit à produção, sem atalho.</h2>
+      <p>Boas práticas que levo de projetos pequenos a plataformas completas: ambientes separados, pipelines automatizados, testes a cada mudança e comunicação sem surpresa.</p>
+    </div>
+
+    <div class="flagship reveal">
+      <div class="flag-top">
+        <div>
+          <div class="tag">// fluxo de git · homologação antes de produção</div>
+          <h3>Caminho do código</h3>
+          <p data-i18n>Cada mudança nasce em uma feature branch e entra em <b>develop</b> por <b>Pull Request</b>, com revisão e CI. A versão candidata é homologada e aprovada em <b>staging</b>, e o <b>mesmo artefato</b> segue para produção com tag de release. Correções urgentes seguem por <b>hotfix</b>.</p>
+        </div>
+        <div class="flag-badges">
+          <span>Git flow</span><span>Pull Request</span><span>CI/CD</span><span>Releases</span>
+        </div>
+      </div>
+
+      <div class="gf-scroll">
+        <svg class="gf" viewBox="0 0 1100 380" role="img" aria-labelledby="gfT gfD">
+          <title id="gfT">Caminho do código: feature, Pull Request, develop, staging, release, produção e hotfix</title>
+          <desc id="gfD">Branches de feature entram em develop por Pull Request, com revisão e CI. De develop sai uma versão candidata para staging, onde há homologação e aprovação do responsável. Aprovada, a versão é promovida a main como o mesmo artefato, recebe uma tag de release e segue para produção pelo pipeline de deploy. Uma correção urgente parte da versão estável em uma branch hotfix, gera nova tag e volta para develop.</desc>
+
+          <!-- trilhas -->
+          <line class="lane-line" x1="118" y1="40" x2="1095" y2="40"/>
+          <line class="lane-line" x1="118" y1="110" x2="1095" y2="110"/>
+          <line class="lane-line" x1="118" y1="180" x2="1095" y2="180"/>
+          <line class="lane-line" x1="118" y1="250" x2="1095" y2="250"/>
+          <line class="lane-line" x1="118" y1="320" x2="1095" y2="320"/>
+          <text class="t-crit" x="0" y="44">hotfix/*</text>
+          <text class="t-main" x="0" y="114">main</text>
+          <text class="t-stg" x="0" y="184">staging</text>
+          <text class="t-dev" x="0" y="254">develop</text>
+          <text class="t-feat" x="0" y="324">feature/*</text>
+
+          <!-- homologação + aprovação -->
+          <rect class="band" x="603" y="158" width="124" height="44" rx="10"/>
+          <text class="t-stg" x="665" y="150" text-anchor="middle">homologação</text>
+
+          <!-- histórico -->
+          <path class="edge s-dev" d="M150 250H1060"/>
+          <path class="edge s-feat" d="M150 250C176 250 174 320 200 320H290C316 320 314 250 340 250"/>
+          <path class="edge s-feat" d="M380 250C406 250 404 320 430 320H475C511 320 514 250 540 250"/>
+          <path class="edge s-stg" d="M590 250C612 250 603 180 625 180H705"/>
+          <path class="edge s-stg" d="M705 180C740 180 740 110 775 110"/>
+          <path class="edge s-main" d="M150 110H1050"/>
+          <path class="edge s-main" d="M1045 104l7 6-7 6"/>
+          <path class="edge s-crit" d="M880 110C902 110 900 40 925 40H955"/>
+          <path class="edge s-crit" d="M955 40C985 40 983 110 1005 110"/>
+          <path class="edge s-crit dash" d="M955 40H1060Q1075 40 1075 55V235Q1075 250 1060 250"/>
+
+          <!-- commits -->
+          <circle class="dot s-main" cx="150" cy="110" r="5.5"/>
+          <circle class="dot s-main f-main" cx="775" cy="110" r="5.5"/>
+          <circle class="dot s-main f-main" cx="845" cy="110" r="7"/>
+          <circle class="dot s-main f-main" cx="1005" cy="110" r="7"/>
+          <circle class="dot s-crit" cx="925" cy="40" r="5.5"/>
+          <circle class="dot s-crit" cx="955" cy="40" r="5.5"/>
+          <circle class="dot s-stg" cx="625" cy="180" r="5.5"/>
+          <circle class="dot s-stg" cx="665" cy="180" r="5.5"/>
+          <path class="gate" d="M705 171l9 9-9 9-9-9z"/>
+          <circle class="dot s-dev" cx="150" cy="250" r="5.5"/>
+          <circle class="dot s-dev f-dev" cx="340" cy="250" r="5.5"/>
+          <circle class="dot s-dev" cx="380" cy="250" r="5.5"/>
+          <circle class="dot s-dev f-dev" cx="540" cy="250" r="5.5"/>
+          <circle class="dot s-dev" cx="590" cy="250" r="5.5"/>
+          <circle class="dot s-crit" cx="1060" cy="250" r="5.5"/>
+          <circle class="dot s-feat" cx="200" cy="320" r="5.5"/>
+          <circle class="dot s-feat" cx="245" cy="320" r="5.5"/>
+          <circle class="dot s-feat" cx="290" cy="320" r="5.5"/>
+          <circle class="dot s-feat" cx="430" cy="320" r="5.5"/>
+          <circle class="dot s-feat" cx="475" cy="320" r="5.5"/>
+
+          <!-- anotações -->
+          <text class="t-ok" x="340" y="232" text-anchor="middle">PR + CI ✓</text>
+          <text class="t-ok" x="540" y="232" text-anchor="middle">PR + CI ✓</text>
+          <text class="t-stg" x="705" y="214" text-anchor="middle">✓ aprovação</text>
+          <text class="t-note" x="748" y="160">mesmo artefato</text>
+          <text class="t-main" x="845" y="92" text-anchor="middle">tag vX.Y.Z</text>
+          <text class="t-note" x="845" y="134" text-anchor="middle">deploy</text>
+          <text class="t-crit" x="940" y="24" text-anchor="middle">correção urgente</text>
+          <text class="t-note" x="1005" y="134" text-anchor="middle">nova tag</text>
+          <text class="t-crit" x="1075" y="272" text-anchor="end">volta para develop</text>
+          <text class="t-note" x="1095" y="368" text-anchor="end">tempo →</text>
+        </svg>
+      </div>
+      <p class="gf-hint" aria-hidden="true">// deslize para ver o fluxo completo →</p>
+
+      <div class="gf-steps" id="gfSteps" data-i18n-skip></div>
+      <p class="gf-note">// o fluxo se adapta ao projeto: com homologação formal, Git flow simplificado; com CI forte e releases frequentes, trunk-based com branches curtas.</p>
+    </div>
+
+    <div class="eyebrow sub">práticas no dia a dia</div>
+    <div class="practices" id="practices" data-i18n-skip></div>
   </div>
 </section>
 
@@ -827,7 +1044,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
       <h2>Entregas para o setor público e privado.</h2>
       <p>Sistemas de missão crítica, com requisitos reais de segurança, escala e disponibilidade.</p>
     </div>
-    <div class="clients reveal" id="clients"></div>
+    <div class="clients reveal" id="clients" data-i18n-skip></div>
     <p class="clients-note reveal">// entre outros diversos clientes públicos e privados.</p>
   </div>
 </section>
@@ -839,7 +1056,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
       <div class="eyebrow">trajetória</div>
       <h2>Do estágio à liderança técnica de produto.</h2>
     </div>
-    <div class="tl" id="timeline"></div>
+    <div class="tl" id="timeline" data-i18n-skip></div>
   </div>
 </section>
 
@@ -879,7 +1096,11 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
   </div>
 </footer>
 
+<script src="i18n.js"></script>
 <script>
+/* tradução: T('texto em português') devolve o texto no idioma ativo (ver i18n.js) */
+const T = I18N.t;
+
 /* ============================================================
    ÍCONES (inline)
    ============================================================ */
@@ -891,25 +1112,31 @@ const IC = {
   queue:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="m3 8 9 5 9-5"/></svg>',
   worker:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3 20a6 6 0 0 1 12 0M15 20a5 5 0 0 1 6-.5"/></svg>',
   ai:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="6" y="6" width="12" height="12" rx="3"/><path d="M9 2v3m6-3v3M9 19v3m6-3v3M2 9h3m-3 6h3m14-6h3m-3 6h3"/><circle cx="12" cy="12" r="2.2"/></svg>',
-  ok:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>'
+  ok:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>',
+  loop:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 0 1-14 5.3L4 15"/><path d="M4 20v-5h5"/></svg>',
+  flask:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-9V3"/><path d="M8 15h8"/></svg>',
+  layers:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>',
+  chat:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6z"/><path d="m9 12 2 2 4-4"/></svg>'
 };
 
 /* ============================================================
    HERO — role rotator + flow strip
    ============================================================ */
-const roles = ['Desenvolvedor Back-End','Go · Python · integrações','sistemas orientados a eventos','back-end é meu foco — full-stack quando precisa'];
+const roles = ['Desenvolvedor Back-End','Go · Python · integrações','sistemas orientados a eventos','CI/CD · testes automatizados · releases','back-end é meu foco — full-stack quando precisa'];
 const roleText = document.getElementById('roleText');
 let rI=0, cI=0, del=false;
 function typeRole(){
-  const full = roles[rI];
+  const full = T(roles[rI]);
   roleText.textContent = full.slice(0, cI);
   if(!del && cI < full.length){ cI++; setTimeout(typeRole,58); }
   else if(!del && cI===full.length){ del=true; setTimeout(typeRole,1700); }
   else if(del && cI>0){ cI--; setTimeout(typeRole,26); }
   else { del=false; rI=(rI+1)%roles.length; setTimeout(typeRole,320); }
 }
-if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ typeRole(); }
-else { roleText.textContent = roles[0]; }
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reducedMotion){ typeRole(); }
+else { roleText.textContent = T(roles[0]); I18N.onChange(()=>{ roleText.textContent = T(roles[0]); }); }
 
 const flowNodes = [
   {ic:'upload',l:'upload'},{ic:'storage',l:'storage'},{ic:'event',l:'evento'},
@@ -943,21 +1170,28 @@ const stages = [
 ];
 const pipe = document.getElementById('pipe');
 const pdH=document.getElementById('pdH'), pdT=document.getElementById('pdT'), pdP=document.getElementById('pdP'), pdL=document.getElementById('pdL');
+let curStage = 0;
 function selStage(i){
+  curStage = i;
   [...pipe.children].forEach((n,k)=>n.classList.toggle('active',k===i));
   const s=stages[i];
-  pdH.textContent = (s.term?'estado final':'estágio '+String(i+1).padStart(2,'0'))+' · '+s.h;
-  pdT.textContent = s.t; pdP.textContent = s.d;
-  pdL.innerHTML = s.l.map(x=>`<li>${x}</li>`).join('');
+  pdH.textContent = (s.term?T('estado final'):T('estágio')+' '+String(i+1).padStart(2,'0'))+' · '+T(s.h);
+  pdT.textContent = T(s.t); pdP.textContent = T(s.d);
+  pdL.innerHTML = s.l.map(x=>`<li>${T(x)}</li>`).join('');
 }
-stages.forEach((s,i)=>{
-  const b=document.createElement('button');
-  b.className='pnode'+(s.term?' term-ok':''); b.setAttribute('role','tab');
-  b.innerHTML = `<div class="pn-n">${s.term?'END':String(i+1).padStart(2,'0')}</div><div class="pn-ic">${IC[s.ic]}</div><div class="pn-t">${s.t}</div>`;
-  b.addEventListener('click',()=>selStage(i));
-  pipe.appendChild(b);
-});
+function buildPipe(){
+  pipe.innerHTML='';
+  stages.forEach((s,i)=>{
+    const b=document.createElement('button');
+    b.className='pnode'+(s.term?' term-ok':''); b.setAttribute('role','tab');
+    b.innerHTML = `<div class="pn-n">${s.term?'END':String(i+1).padStart(2,'0')}</div><div class="pn-ic">${IC[s.ic]}</div><div class="pn-t">${T(s.t)}</div>`;
+    b.addEventListener('click',()=>selStage(i));
+    pipe.appendChild(b);
+  });
+}
+buildPipe();
 selStage(0);
+I18N.onChange(()=>{ buildPipe(); selStage(curStage); });
 
 /* ============================================================
    PROJETOS
@@ -1059,34 +1293,121 @@ const projects = [
 ];
 const grid = document.getElementById('projGrid');
 const kindLabel = {prod:'produção', cap:'capacidade'};
-function renderProjects(filter='all'){
+let curFilter = 'all';
+const openCards = new Set();   // índices dos cards expandidos (sobrevive à troca de filtro e de idioma)
+function renderProjects(filter=curFilter){
+  curFilter = filter;
   grid.innerHTML='';
-  projects.forEach(p=>{
+  projects.forEach((p,i)=>{
     if(filter!=='all' && !p.f.includes(filter)) return;
-    const c=document.createElement('article'); c.className='card';
+    const isOpen = !!p.bul && openCards.has(i);
+    const c=document.createElement('article'); c.className='card'+(isOpen?' open':''); c.dataset.i=i;
     c.innerHTML = `
-      <div class="tag">// ${p.tag} <span class="badge">${p.badge}</span><span class="kind ${p.kind}">${kindLabel[p.kind]}</span></div>
-      <h3>${p.t}</h3>
-      ${p.sub ? `<div class="sub">${p.sub}</div>` : ''}
-      <p>${p.d}</p>
-      ${p.bul ? `<button class="more" type="button" aria-expanded="false">detalhes técnicos <i>▾</i></button>
-      <div class="bul"><div><ul>${p.bul.map(b=>`<li>${b}</li>`).join('')}</ul></div></div>` : ''}
-      <div class="tech">${p.tech.map(t=>`<span>${t}</span>`).join('')}</div>`;
+      <div class="tag">// ${T(p.tag)} <span class="badge">${T(p.badge)}</span><span class="kind ${p.kind}">${T(kindLabel[p.kind])}</span></div>
+      <h3>${T(p.t)}</h3>
+      ${p.sub ? `<div class="sub">${T(p.sub)}</div>` : ''}
+      <p>${T(p.d)}</p>
+      ${p.bul ? `<button class="more" type="button" aria-expanded="${isOpen}">${T(isOpen?'ocultar detalhes':'detalhes técnicos')} <i>▾</i></button>
+      <div class="bul"><div><ul>${p.bul.map(b=>`<li>${T(b)}</li>`).join('')}</ul></div></div>` : ''}
+      <div class="tech">${p.tech.map(t=>`<span>${T(t)}</span>`).join('')}</div>`;
     grid.appendChild(c);
   });
 }
 renderProjects();
+I18N.onChange(()=>renderProjects());
 grid.addEventListener('click',e=>{
   const b=e.target.closest('.more'); if(!b) return;
   const card=b.closest('.card'); const open=card.classList.toggle('open');
+  open ? openCards.add(+card.dataset.i) : openCards.delete(+card.dataset.i);
   b.setAttribute('aria-expanded', open ? 'true' : 'false');
-  b.firstChild.nodeValue = open ? 'ocultar detalhes ' : 'detalhes técnicos ';
+  b.firstChild.nodeValue = (open ? T('ocultar detalhes') : T('detalhes técnicos')) + ' ';
 });
 document.getElementById('filters').addEventListener('click',e=>{
   const b=e.target.closest('.filter'); if(!b) return;
   document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));
   b.classList.add('active'); renderProjects(b.dataset.f);
 });
+
+/* ============================================================
+   ATUAÇÃO — frentes de trabalho
+   ============================================================ */
+const areas = [
+  {t:'Bridgefy', d:'Participação no desenvolvimento das três versões da plataforma.',
+   items:['<b>3</b> versões']},
+  {t:'Data', d:'Aplicações de integração entregues por cliente e por versão, com dashboards de monitoramento.',
+   items:['<b>9</b> aplicações','<b>6</b> clientes','<b>3</b> versões']},
+  {t:'Connect', d:'Desenvolvimento e sustentação dos conectores de placas e faces, com evolução dos fluxos de processamento, do tratamento de mensagens e da confiabilidade das integrações.',
+   items:['<b>3</b> aplicações','<b>2</b> integradores de faces','SFTP','Motor facial']},
+  {t:'Orquestrador de alertas', d:'Desenvolvimento e evolução do orquestrador, integrando os fluxos de processamento e a comunicação entre serviços.',
+   items:['Fluxos de processamento','Comunicação entre serviços']},
+  {t:'Integrações externas e institucionais', d:'Integrações com órgãos e sistemas institucionais, do desenho dos endpoints ao envio de matches.',
+   items:['<b>3</b> órgãos integrados','<b>5</b> frentes de integração','Endpoints entre sistemas']},
+  {t:'Plataforma e infraestrutura de dados', d:'Banco de dados e integrador de dados para um órgão estadual, e plataforma de cadastro desenvolvida em dupla.',
+   items:['<b>3</b> entregas','Plataforma de cadastro','Banco de dados','Integrador de dados']},
+  {t:'Dashboards e monitoramento', d:'Apoio à criação das soluções de monitoramento dos clientes.',
+   items:['<b>2</b> soluções de monitoramento','Dashboards dos <b>9</b> projetos Data']},
+  {t:'Provas de conceito', d:'Protótipos para validar a ideia antes de investir, alguns evoluídos para produção.',
+   items:['<b>4</b> provas de conceito','<b>2</b> para clientes','Tempo real com SSE']},
+  {t:'Automações e integrações internas', d:'Rotinas operacionais automatizadas e ferramentas para o time.',
+   items:['Envio automático de e-mails','Integrações entre sistemas internos','Automação de rotinas','App interna de chamados para o Suporte']},
+  {t:'Sustentação e evolução', live:'contínuo', d:'Correção, investigação e manutenção das aplicações em produção, com foco em confiabilidade e continuidade operacional.',
+   items:['Correção de erros','Investigação de problemas técnicos','Manutenção em produção','Tratamento de falhas','Melhorias de confiabilidade']}
+];
+function renderAreas(){
+  document.getElementById('areas').innerHTML = areas.map(a=>`
+    <div class="lrow">
+      <div><h3>${T(a.t)}${a.live?`<span class="live">${T(a.live)}</span>`:''}</h3><p>${T(a.d)}</p></div>
+      <div class="lchips">${a.items.map(i=>`<span>${T(i)}</span>`).join('')}</div>
+    </div>`).join('');
+}
+renderAreas();
+I18N.onChange(renderAreas);
+
+/* ============================================================
+   MÉTODO — caminho do git + práticas
+   ============================================================ */
+const gitSteps = [
+  {n:'01',t:'feature/*',r:'desenvolvimento isolado',c:'var(--muted-2)',d:'Implementação e testes locais em uma branch curta, com escopo claro.'},
+  {n:'02',t:'Pull Request → develop',r:'revisão e CI',c:'var(--accent)',d:'Revisão de código, análise estática e testes automatizados antes do merge.'},
+  {n:'03',t:'staging',r:'homologação e aprovação',c:'var(--warn)',d:'Deploy automatizado e testes de integração. Validação funcional e aprovação do responsável antes de seguir.'},
+  {n:'04',t:'main · tag vX.Y.Z',r:'versão imutável',c:'var(--live)',d:'Tag no commit liberado. O mesmo artefato homologado, uma imagem Docker versionada, é promovido sem recompilar.'},
+  {n:'05',t:'produção',r:'deploy e retorno',c:'var(--live)',d:'Deploy automatizado, verificação pós-deploy e monitoramento, com rollback para a versão anterior.'},
+  {n:'06',t:'hotfix/*',r:'correção urgente',c:'var(--crit)',d:'Parte da versão estável: correção, testes e nova release. Volta para develop para não divergir.'}
+];
+function renderGitSteps(){
+  document.getElementById('gfSteps').innerHTML = gitSteps.map(s=>`
+    <div class="gf-step" style="--sc:${s.c}">
+      <div class="n">${s.n}</div><h4>${T(s.t)}</h4><div class="role">${T(s.r)}</div><p>${T(s.d)}</p>
+    </div>`).join('');
+}
+renderGitSteps();
+I18N.onChange(renderGitSteps);
+
+const practices = [
+  {ic:'loop',t:'Pipelines automatizados',
+   l:['<b>Build, testes e empacotamento</b> em Docker a cada Pull Request.','<b>Mesmo artefato</b> promovido da homologação à produção, sem recompilar.','Release por tag versionada e deploy automatizado.']},
+  {ic:'flask',t:'Testes automatizados',
+   l:['Testes e análise estática no Pull Request; testes de integração em homologação.','<b>Falha cedo</b>: configuração inválida derruba o boot, não a produção.','Menos regressão chegando ao cliente.']},
+  {ic:'layers',t:'Gestão de projetos, do pequeno ao grande',
+   l:['Do micro app local a plataformas com <b>várias versões e clientes</b>.','Escopo dividido em entregas incrementais.','Acompanhamento do desenvolvimento à sustentação.']},
+  {ic:'chat',t:'Comunicação proativa e transparente',
+   l:['Status, riscos e prazos avisados <b>antes de virarem problema</b>.','Reuniões técnicas para alinhar requisitos e esclarecer dúvidas.','Apresentação das funcionalidades e soluções entregues ao cliente.']},
+  {ic:'worker',t:'Colaboração técnica',
+   l:['Apoio técnico aos demais desenvolvedores.','Análise conjunta de problemas e integração entre sistemas.','Evolução das práticas de Git e de versionamento.']},
+  {ic:'shield',t:'Confiabilidade em produção',
+   l:['<b>Retry, dead-letter e circuit breaker</b> nas integrações.','Logs JSON e alertas proativos no Grafana.','Monitoramento pós-deploy e rollback para a versão anterior.']}
+];
+let firstPaint = true;   // cards criados depois da 1ª renderização já entram visíveis (sem esperar o scroll)
+function renderPractices(){
+  document.getElementById('practices').innerHTML = practices.map(p=>`
+    <article class="pcard ${firstPaint?'reveal':'in'}">
+      <div class="ph"><div class="pi">${IC[p.ic]}</div><h3>${T(p.t)}</h3></div>
+      <ul>${p.l.map(x=>`<li>${T(x)}</li>`).join('')}</ul>
+    </article>`).join('');
+}
+renderPractices();
+firstPaint = false;
+I18N.onChange(renderPractices);
 
 /* ============================================================
    CLIENTES
@@ -1099,18 +1420,23 @@ const clients=[
   {g:'+',n:'Setor privado',s:'diversos clientes'}
 ];
 const cel=document.getElementById('clients');
-clients.forEach(c=>{
-  const d=document.createElement('div'); d.className='client';
-  d.innerHTML=`<div class="glyph">${c.g}</div><div class="ct"><b>${c.n}</b><small>${c.s}</small></div>`;
-  cel.appendChild(d);
-});
+function renderClients(){
+  cel.innerHTML='';
+  clients.forEach(c=>{
+    const d=document.createElement('div'); d.className='client';
+    d.innerHTML=`<div class="glyph">${c.g}</div><div class="ct"><b>${T(c.n)}</b><small>${T(c.s)}</small></div>`;
+    cel.appendChild(d);
+  });
+}
+renderClients();
+I18N.onChange(renderClients);
 
 /* ============================================================
    TIMELINE
    ============================================================ */
 const tl=[
   {now:true,when:'mar 2024 — atual',org:'DGT Tecnologia · Estância Velha, RS',t:'Desenvolvedor Back-End Pleno',
-   d:'Desenvolvimento back-end de sistemas orientados a eventos em Go e Python, com integrações, mensageria e automação. Atuação também em DevOps (Docker, Kubernetes) e front-end conforme a necessidade.'},
+   d:'Desenvolvimento back-end de sistemas orientados a eventos em Go e Python, com integrações, mensageria e automação. Atuação também em DevOps (Docker, Kubernetes) e front-end conforme a necessidade. Entrega com Git flow, pipelines CI/CD e testes automatizados, apoia tecnicamente o time e participa de reuniões técnicas com clientes.'},
   {when:'mai 2023 — mar 2024',org:'DGT Tecnologia',t:'Analista de Desenvolvimento de Sistema Pleno',
    d:'Integrações de API, automação de dados e tarefas, containerização com Docker/Portainer, filas de mensagens e arquitetura de banco de dados.'},
   {when:'out 2022 — mai 2023',org:'DGT Tecnologia',t:'Analista de Sistema Júnior',
@@ -1119,11 +1445,16 @@ const tl=[
    d:'Automação de tarefas (Python, VBA, SAP, Power BI), gestão de bancos de dados e processos automatizados de alto nível (microsserviços).'}
 ];
 const tlEl=document.getElementById('timeline');
-tl.forEach(i=>{
-  const d=document.createElement('div'); d.className='tl-item'+(i.now?' now':'');
-  d.innerHTML=`<div class="tl-when">${i.when}</div><h3>${i.t}</h3><div class="org">${i.org}</div><p>${i.d}</p>`;
-  tlEl.appendChild(d);
-});
+function renderTimeline(){
+  tlEl.innerHTML='';
+  tl.forEach(i=>{
+    const d=document.createElement('div'); d.className='tl-item'+(i.now?' now':'');
+    d.innerHTML=`<div class="tl-when">${T(i.when)}</div><h3>${T(i.t)}</h3><div class="org">${T(i.org)}</div><p>${T(i.d)}</p>`;
+    tlEl.appendChild(d);
+  });
+}
+renderTimeline();
+I18N.onChange(renderTimeline);
 
 /* ============================================================
    TEMA
@@ -1189,7 +1520,10 @@ const BRAND = {
   'Web scraping':{t:'Sc',c:'#22C55E'},
   'Vercel':{t:'▲',c:'#111111'},'Netlify':{t:'Nf',c:'#00C7B7',d:1},'Cloudflare':{t:'CF',c:'#F38020'},
   'Supabase':{t:'Sb',c:'#3ECF8E',d:1},'Blob Storage':{t:'Bl',c:'#7C3AED'},'HostGator':{t:'HG',c:'#005F86'},
-  'GitHub Pages':{t:'GH',c:'#181717'},'Domínios / DNS':{t:'DNS',c:'#0EA5E9',fs:5.5},'Deploy contínuo':{t:'CD',c:'#22C55E'}
+  'GitHub Pages':{t:'GH',c:'#181717'},'Domínios / DNS':{t:'DNS',c:'#0EA5E9',fs:5.5},'Deploy contínuo':{t:'CD',c:'#22C55E'},
+  'Git':{t:'Git',c:'#F05032',fs:6.5},'Git flow':{t:'GF',c:'#F05032'},'Pipelines CI/CD':{t:'CI',c:'#22C55E'},
+  'Testes automatizados':{t:'✓',c:'#34D399',d:1},'Homologação / staging':{t:'HM',c:'#FBBF24',d:1},
+  'Releases versionadas':{t:'v',c:'#A855F7'}
 };
 document.querySelectorAll('.stack-card .chip').forEach(chip=>{
   let label='';
@@ -1244,6 +1578,9 @@ addEventListener('resize',syncTabs);
 syncTabs();
 
 document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* idioma: precisa rodar por último (os logos dos chips da stack leem o texto em português antes) */
+I18N.start();
 </script>
 </body>
 </html>

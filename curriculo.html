@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Currículo — Lucas dos Santos Costa</title>
-<meta name="description" content="Currículo profissional de Lucas dos Santos Costa — Desenvolvedor Back-End (Go · Python)." />
+<meta name="description" data-i18n-attr="content" content="Currículo profissional de Lucas dos Santos Costa — Desenvolvedor Back-End (Go · Python)." />
 <style>
 :root{
   --ground:#0a0e14;--panel:#121821;--panel-2:#161d28;--line:#232c3a;--line-soft:#1b2330;
@@ -51,6 +51,18 @@ h1,h2,h3{margin:0;color:var(--ink-strong)}
 .tb-btn.primary:hover{background:var(--accent-deep)}
 .tb-btn svg{width:16px;height:16px}
 .theme-btn{width:40px;height:40px;justify-content:center;padding:0;font-size:15px}
+
+/* seletor de idioma */
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--panel)}
+.lang button{
+  font-family:var(--mono);font-size:12.5px;color:var(--muted);background:transparent;border:0;
+  height:38px;min-width:38px;padding:0 10px;cursor:pointer;transition:color .18s, background .18s;
+}
+.lang button + button{border-left:1px solid var(--line)}
+.lang button:hover{color:var(--ink-strong)}
+.lang button.on{color:var(--accent);background:var(--accent-glow)}
+.lang button:focus-visible{outline-offset:-2px}
+@media(max-width:520px){.toolbar-in{padding:12px 16px}.tb-spacer{gap:8px}.tb-btn.primary{padding:10px 12px}}
 
 /* página A4 */
 .sheet{
@@ -132,7 +144,8 @@ h1,h2,h3{margin:0;color:var(--ink-strong)}
   .cv-body{grid-template-columns:1fr 2fr}
   .cv-side{background:#fff;border-right:1px solid #d5dbe4;padding:0 18px 0 0}
   .cv-main{padding:0 0 0 22px}
-  .tags span,.edu,.summary,.summary b,.xp .role,.xp li,.xp li b,.ach li,.ach li b{color:#111!important}
+  .tags span,.edu,.edu b,.skgrp b,.summary,.summary b,.xp .role,.xp li,.xp li b,.ach li,.ach li b{color:#111!important}
+  .edu span,.xp .meta{color:#555}
   .tags span{background:#fff;border-color:#cbd3de}
   .blk h2{border-color:#d5dbe4}
   .xp::before,.ach li::before{color:#0284c7}
@@ -150,7 +163,12 @@ h1,h2,h3{margin:0;color:var(--ink-strong)}
   <div class="toolbar-in">
     <a href="index.html" class="tb-back">← portfólio</a>
     <div class="tb-spacer">
-      <button class="tb-btn theme-btn" id="themeBtn" aria-label="Alternar tema" title="Alternar tema">◐</button>
+      <div class="lang" role="group" aria-label="Idioma" data-i18n-attr="aria-label" data-i18n-skip>
+        <button type="button" data-lang="pt" lang="pt" title="Português" aria-pressed="true">PT</button>
+        <button type="button" data-lang="en" lang="en" title="English (US)" aria-pressed="false">EN</button>
+        <button type="button" data-lang="es" lang="es" title="Español" aria-pressed="false">ES</button>
+      </div>
+      <button class="tb-btn theme-btn" id="themeBtn" aria-label="Alternar tema" title="Alternar tema" data-i18n-attr="aria-label,title">◐</button>
       <button class="tb-btn primary" id="pdfBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0-4-4m4 4 4-4"/><path d="M5 21h14"/></svg>
         Baixar PDF
@@ -192,8 +210,8 @@ h1,h2,h3{margin:0;color:var(--ink-strong)}
         <div class="skgrp"><b>Mensageria &amp; tempo real</b>
           <div class="tags"><span>RabbitMQ</span><span>MQTT</span><span>WebSocket</span><span>Webhook</span><span>Event-driven</span></div>
         </div>
-        <div class="skgrp"><b>DevOps, cloud &amp; infra</b>
-          <div class="tags"><span>Docker</span><span>Kubernetes</span><span>Portainer</span><span>CI/CD</span><span>AWS</span><span>Azure</span><span>Oracle Cloud</span><span>GCP</span></div>
+        <div class="skgrp"><b>DevOps, cloud &amp; entrega</b>
+          <div class="tags"><span>Docker</span><span>Kubernetes</span><span>Portainer</span><span>CI/CD</span><span>Git flow</span><span>Testes automatizados</span><span>AWS</span><span>Azure</span><span>Oracle Cloud</span><span>GCP</span></div>
         </div>
         <div class="skgrp"><b>Deploy, hosting &amp; domínios</b>
           <div class="tags"><span>Vercel</span><span>Netlify</span><span>Cloudflare</span><span>Supabase</span><span>Blob Storage</span><span>HostGator</span><span>GitHub Pages</span><span>DNS / SSL</span></div>
@@ -231,12 +249,14 @@ h1,h2,h3{margin:0;color:var(--ink-strong)}
     <main class="cv-main">
       <div class="blk">
         <h2>Resumo profissional</h2>
-        <p class="summary">
+        <p class="summary" data-i18n>
           Desenvolvedor back-end com foco em <b>sistemas orientados a eventos</b>, <b>integrações de alta escala</b>
           e <b>processamento de dados em tempo real</b>. Já entreguei <b>mais de 50 integrações</b> — de rotinas
           simples do dia a dia a plataformas completas — construídas majoritariamente em <b>Go</b>, com <b>Python</b>
           para análise de dados intensiva. Sólido em mensageria, observabilidade (Grafana · Prometheus),
-          reconhecimento facial em tempo real e microsserviços. <b>Back-end é meu foco principal</b>, mas atuo
+          reconhecimento facial em tempo real e microsserviços. Entrego com <b>Git flow</b> (develop · staging · main),
+          <b>pipelines CI/CD</b> e <b>testes automatizados</b>, e conduzo projetos de pequeno a grande porte com
+          <b>comunicação proativa e transparente</b>. <b>Back-end é meu foco principal</b>, mas atuo
           também em <b>DevOps</b> (Docker · Kubernetes) e <b>front-end</b> conforme a necessidade. Atendimento a
           clientes públicos e privados de grande porte, com requisitos reais de segurança e escala.
         </p>
@@ -249,11 +269,13 @@ h1,h2,h3{margin:0;color:var(--ink-strong)}
           <div class="role">Desenvolvedor Back-End Pleno</div>
           <div class="meta"><span class="co">DGT Tecnologia Ltda</span><span>Estância Velha, RS</span><span>mar/2024 – atual</span></div>
           <ul>
-            <li>Participei do desenvolvimento das <b>principais versões do produto</b>, evoluindo o sistema e dando suporte contínuo.</li>
-            <li>Desenvolvimento back-end de <b>sistemas orientados a eventos em Go</b>, com mensageria (RabbitMQ/MQTT) e integrações de API.</li>
-            <li>Pipelines de <b>processamento de imagem e reconhecimento facial em tempo real</b>, com foco em performance e escala.</li>
-            <li>Plataformas de <b>dados self-service</b> e <b>alertas multicanal</b>, expostas de forma segura via API.</li>
-            <li>Atuação em <b>DevOps</b> (Docker · Kubernetes) e observabilidade, além de <b>front-end</b> conforme a necessidade.</li>
+            <li data-i18n><b>Sustentação e evolução contínua</b> de sistemas em produção, com correção de falhas e melhorias de confiabilidade.</li>
+            <li data-i18n>Desenvolvimento back-end de <b>sistemas orientados a eventos em Go</b>, com mensageria (RabbitMQ/MQTT) e integrações de API.</li>
+            <li data-i18n>Pipelines de <b>processamento de imagem e reconhecimento facial em tempo real</b>, com foco em performance e escala.</li>
+            <li data-i18n>Plataformas de <b>dados self-service</b> e <b>alertas multicanal</b>, expostas de forma segura via API.</li>
+            <li data-i18n>Evolução e sustentação das aplicações <b>Connect</b> (placas e faces), do <b>orquestrador de alertas</b> e de integrações com <b>órgãos públicos federais, estaduais e municipais</b>.</li>
+            <li data-i18n>Entrega com <b>Git flow</b>, <b>pipelines CI/CD</b>, <b>testes automatizados</b> e homologação; reuniões técnicas com clientes e apoio aos demais desenvolvedores.</li>
+            <li data-i18n>Atuação em <b>DevOps</b> (Docker · Kubernetes) e observabilidade, além de <b>front-end</b> conforme a necessidade.</li>
           </ul>
         </div>
 
@@ -261,8 +283,8 @@ h1,h2,h3{margin:0;color:var(--ink-strong)}
           <div class="role">Analista de Desenvolvimento de Sistema Pleno</div>
           <div class="meta"><span class="co">DGT Tecnologia Ltda</span><span>Estância Velha, RS</span><span>mai/2023 – mar/2024</span></div>
           <ul>
-            <li>Desenvolvimento de software e <b>integrações de API</b>, automação de dados e de tarefas.</li>
-            <li>Containerização com <b>Docker/Portainer</b>, filas de mensagens e arquitetura de banco de dados.</li>
+            <li data-i18n>Desenvolvimento de software e <b>integrações de API</b>, automação de dados e de tarefas.</li>
+            <li data-i18n>Containerização com <b>Docker/Portainer</b>, filas de mensagens e arquitetura de banco de dados.</li>
             <li>Gestão de logs, alertas proativos e ambientes virtualizados / de teste.</li>
           </ul>
         </div>
@@ -271,7 +293,7 @@ h1,h2,h3{margin:0;color:var(--ink-strong)}
           <div class="role">Analista de Sistema Júnior</div>
           <div class="meta"><span class="co">DGT Tecnologia Ltda</span><span>Novo Hamburgo, RS</span><span>out/2022 – mai/2023</span></div>
           <ul>
-            <li>Desenvolvimento, <b>automação de processos</b> e integração de sistemas (APIs).</li>
+            <li data-i18n>Desenvolvimento, <b>automação de processos</b> e integração de sistemas (APIs).</li>
             <li>Documentação técnica, criação de fluxogramas, relatórios e suporte à equipe de implantação.</li>
           </ul>
         </div>
@@ -280,8 +302,8 @@ h1,h2,h3{margin:0;color:var(--ink-strong)}
           <div class="role">Estágio — Programação CNC e Data Science</div>
           <div class="meta"><span class="co">TK Elevator</span><span>Guaíba, RS</span><span>mar/2021 – mai/2022</span></div>
           <ul>
-            <li><b>Automação de tarefas</b> (Python, VBA, SAP, Power BI) e gestão de bancos de dados.</li>
-            <li>Criação e execução de <b>processos automatizados de alto nível (microsserviços)</b> e apoio a desenhos técnicos (SolidWorks, AutoCAD, Inventor).</li>
+            <li data-i18n><b>Automação de tarefas</b> (Python, VBA, SAP, Power BI) e gestão de bancos de dados.</li>
+            <li data-i18n>Criação e execução de <b>processos automatizados de alto nível (microsserviços)</b> e apoio a desenhos técnicos (SolidWorks, AutoCAD, Inventor).</li>
           </ul>
         </div>
       </div>
@@ -289,18 +311,19 @@ h1,h2,h3{margin:0;color:var(--ink-strong)}
       <div class="blk">
         <h2>Realizações em destaque</h2>
         <ul class="ach">
-          <li>API em <b>Go</b> que integra múltiplos bancos de dados com segurança, gerando relatórios e dashboards dinâmicos.</li>
-          <li>Sistema inteligente de monitoramento que integra <b>reconhecimento facial e de veículos</b> com microsserviços em Python e Go.</li>
-          <li>Integração e automação de bancos de dados via APIs e <b>web scraping</b>, com foco em relatórios web seguros e otimizados.</li>
-          <li>Automações que conectam <b>hardware a softwares personalizados</b> para controle e análise em campo.</li>
+          <li data-i18n>API em <b>Go</b> que integra múltiplos bancos de dados com segurança, gerando relatórios e dashboards dinâmicos.</li>
+          <li data-i18n>Sistema inteligente de monitoramento que integra <b>reconhecimento facial e de veículos</b> com microsserviços em Python e Go.</li>
+          <li data-i18n>Integração e automação de bancos de dados via APIs e <b>web scraping</b>, com foco em relatórios web seguros e otimizados.</li>
+          <li data-i18n>Automações que conectam <b>hardware a softwares personalizados</b> para controle e análise em campo.</li>
         </ul>
       </div>
     </main>
   </div>
 </div>
 
-<p class="print-hint">Dica: clique em <b>Baixar PDF</b> → na janela de impressão escolha <b>“Salvar como PDF”</b> e defina margens padrão / A4.</p>
+<p class="print-hint" data-i18n>Dica: clique em <b>Baixar PDF</b> → na janela de impressão escolha <b>“Salvar como PDF”</b> e defina margens padrão / A4.</p>
 
+<script src="i18n.js"></script>
 <script>
   const root=document.documentElement, tbtn=document.getElementById('themeBtn');
   const saved=localStorage.getItem('theme');
@@ -311,6 +334,7 @@ h1,h2,h3{margin:0;color:var(--ink-strong)}
     root.setAttribute('data-theme',next); localStorage.setItem('theme',next);
   });
   document.getElementById('pdfBtn').addEventListener('click',()=>window.print());
+  I18N.start();
 </script>
 </body>
 </html>
