@@ -763,6 +763,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
       <button class="filter" data-s="infra">cloud &amp; devops</button>
       <button class="filter" data-s="deliv">entrega &amp; qualidade</button>
       <button class="filter" data-s="observ">observabilidade</button>
+      <button class="filter" data-s="api">APIs</button>
       <button class="filter" data-s="bi">BI &amp; IA</button>
     </div>
 
@@ -799,6 +800,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
           <span class="chip">PostgreSQL</span>
           <span class="chip">MySQL</span>
           <span class="chip">Oracle</span>
+          <span class="chip">IBM DB2</span>
           <span class="chip">SQL Server</span>
           <span class="chip">MariaDB</span>
           <span class="chip">MongoDB <span class="lv">NoSQL</span></span>
@@ -857,6 +859,16 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0;margin-top:20px}
           <span class="chip">Logs JSON</span>
           <span class="chip">Alertas proativos</span>
           <span class="chip">Auditoria</span>
+        </div>
+      </div>
+      <div class="stack-card reveal" data-cat="api">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0z"/><path d="M12 18v4"/></svg>APIs de terceiros</h3>
+        <div class="chips">
+          <span class="chip">Zabbix API</span>
+          <span class="chip">Digifort API</span>
+          <span class="chip">IPX API</span>
+          <span class="chip">FindFace Multi API</span>
+          <span class="chip">API de placas</span>
         </div>
       </div>
       <div class="stack-card reveal" data-cat="bi">
@@ -1273,6 +1285,22 @@ const projects = [
    ],
    tech:['Go','Gin','Docker Engine API','cron','REST','Docker Compose']},
 
+  {kind:'prod', f:['observ','data'], tag:'monitoramento em tempo real', badge:'20 mil eventos/min',
+   t:'EventPulse — contagem de eventos em tempo real',
+   sub:'Alta concorrência · eventos → tabela de contagem',
+   d:'Aplicação de monitoramento que recebe um fluxo contínuo de eventos, calcula a contagem e armazena o resultado em uma tabela de contagem.',
+   bul:[
+     '<b>Mais de 20 mil eventos por minuto</b> processados de forma contínua.',
+     '<b>2.000 conexões simultâneas</b> sustentadas pela aplicação.',
+     'Contagem calculada em tempo real e gravada em uma <b>tabela de contagem</b> dedicada.'
+   ],
+   tech:['Eventos em tempo real','Alta concorrência','Tabela de contagem']},
+
+  {kind:'prod', f:['infra','observ'], tag:'infraestrutura & eventos', badge:'infra completa',
+   t:'EventControl — controle de eventos e infraestrutura',
+   d:'Aplicação para controle de milhares de eventos, entregue junto com toda a infraestrutura de suporte, criada para sustentá-la.',
+   tech:['Eventos em tempo real','Infraestrutura']},
+
   /* ---------- capacidades / arquiteturas ilustrativas ---------- */
   {kind:'cap', f:['alerts','integration'], tag:'orquestração de alertas', badge:'multicanal',
    t:'AlertHub — central de alertas multicanal',
@@ -1523,7 +1551,10 @@ const BRAND = {
   'GitHub Pages':{t:'GH',c:'#181717'},'Domínios / DNS':{t:'DNS',c:'#0EA5E9',fs:5.5},'Deploy contínuo':{t:'CD',c:'#22C55E'},
   'Git':{t:'Git',c:'#F05032',fs:6.5},'Git flow':{t:'GF',c:'#F05032'},'Pipelines CI/CD':{t:'CI',c:'#22C55E'},
   'Testes automatizados':{t:'✓',c:'#34D399',d:1},'Homologação / staging':{t:'HM',c:'#FBBF24',d:1},
-  'Releases versionadas':{t:'v',c:'#A855F7'}
+  'Releases versionadas':{t:'v',c:'#A855F7'},
+  'IBM DB2':{t:'DB2',c:'#0F62FE',fs:6.5},
+  'Zabbix API':{t:'Zb',c:'#D40000'},'Digifort API':{t:'Df',c:'#0B5FA5'},'IPX API':{t:'IPX',c:'#64748B',fs:6},
+  'FindFace Multi API':{t:'FF',c:'#A855F7'},'API de placas':{t:'PL',c:'#0EA5E9'}
 };
 document.querySelectorAll('.stack-card .chip').forEach(chip=>{
   let label='';
